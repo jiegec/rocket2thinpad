@@ -16,7 +16,6 @@ class RocketChip(implicit val p: Parameters) extends Module {
 
   val io = IO(new Bundle {
     val interrupts = Input(UInt(2.W))
-    val dmiClock = Input(Clock())
     val mem_axi4 = target.mem_axi4.head.cloneType
     val mmio_axi4 = target.mmio_axi4.head.cloneType
   })
@@ -28,7 +27,7 @@ class RocketChip(implicit val p: Parameters) extends Module {
   target.debug.map { debug =>
     debug.clockeddmi.map { clockeddmi =>
       clockeddmi.dmiReset := true.B
-      clockeddmi.dmiClock := io.dmiClock
+      clockeddmi.dmiClock := clock
       clockeddmi.dmi.req.valid := false.B
       clockeddmi.dmi.req.bits.op := 0.U
       clockeddmi.dmi.req.bits.addr := 0.U
