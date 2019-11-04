@@ -1,7 +1,7 @@
 JOBS = 16
 ROCKET_DIR ?= $(BASE_DIR)/rocket-chip
 TOP_MODULE_PROJECT ?= thinpad
-TOP_MODULE ?= Top
+TOP_MODULE ?= RocketChip
 CONFIG ?= ThinpadFPGAConfig
 
 BASE_DIR = $(abspath .)

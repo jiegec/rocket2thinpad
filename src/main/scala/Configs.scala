@@ -3,6 +3,7 @@ package thinpad
 import chisel3._
 import freechips.rocketchip.config.{Parameters, Config}
 import freechips.rocketchip.subsystem._
+import freechips.rocketchip.devices.debug._
 import freechips.rocketchip.devices.tilelink.BootROMParams
 import freechips.rocketchip.rocket.{RocketCoreParams, MulDivParams, DCacheParams, ICacheParams}
 import freechips.rocketchip.tile.{RocketTileParams, XLen}

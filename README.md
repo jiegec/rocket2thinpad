@@ -11,3 +11,7 @@ $ make
 $ # alternatively
 $ make ROCKET_DIR=/path/to/rocket-chip
 ```
+
+## License
+
+Licensed under MIT License. The directory `bootrom` is originated from [ucb-bar/testchipip](https://github.com/ucb-bar/testchipip), while the build script is originated from [ucb-bar/fpga-zynq](https://github.com/ucb-bar/fpga-zynq).
