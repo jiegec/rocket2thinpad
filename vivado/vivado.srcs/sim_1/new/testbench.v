@@ -35,7 +35,8 @@ module testbench(
     end
 
     design_1_wrapper dut (
-        .clk(clk),
-        .reset(rst)
+        .clk_50M(clk),
+        .reset(rst),
+        .uart_rxd(0)
     );
 endmodule
