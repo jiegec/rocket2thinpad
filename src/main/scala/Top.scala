@@ -6,6 +6,7 @@ import freechips.rocketchip.devices.tilelink._
 import freechips.rocketchip.diplomacy.{LazyModule, LazyModuleImp}
 import freechips.rocketchip.subsystem._
 import freechips.rocketchip.util._
+import freechips.rocketchip.tile._
 
 class RocketChip(implicit val p: Parameters) extends Module {
   val config = p(ExtIn)
