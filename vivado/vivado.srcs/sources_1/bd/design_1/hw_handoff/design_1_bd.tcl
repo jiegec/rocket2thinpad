@@ -183,9 +183,9 @@ proc create_root_design { parentCell } {
   # Create instance: axi_bram_ctrl_0_bram, and set properties
   set axi_bram_ctrl_0_bram [ create_bd_cell -type ip -vlnv xilinx.com:ip:blk_mem_gen:8.4 axi_bram_ctrl_0_bram ]
   set_property -dict [ list \
-   CONFIG.Memory_Type {Single_Port_ROM} \
-   CONFIG.Port_A_Write_Rate {0} \
-   CONFIG.Use_Byte_Write_Enable {false} \
+   CONFIG.Memory_Type {Single_Port_RAM} \
+   CONFIG.Port_A_Write_Rate {50} \
+   CONFIG.Use_Byte_Write_Enable {true} \
  ] $axi_bram_ctrl_0_bram
 
   # Create instance: axi_mem_intercon, and set properties
@@ -313,8 +313,8 @@ set_property HDL_ATTRIBUTE.DEBUG {true} [get_bd_intf_nets rocketchip_wrapper_0_M
   connect_bd_net -net xlconstant_1_dout [get_bd_pins clk_wiz_0/reset] [get_bd_pins xlconstant_1/dout]
 
   # Create address segments
-  create_bd_addr_seg -range 0x00002000 -offset 0x80000000 [get_bd_addr_spaces rocketchip_wrapper_0/M_AXI] [get_bd_addr_segs axi_bram_ctrl_0/S_AXI/Mem0] SEG_axi_bram_ctrl_0_Mem0
-  create_bd_addr_seg -range 0x00002000 -offset 0x80000000 [get_bd_addr_spaces rocketchip_wrapper_0/M_AXI_MMIO] [get_bd_addr_segs axi_bram_ctrl_0/S_AXI/Mem0] SEG_axi_bram_ctrl_0_Mem0
+  create_bd_addr_seg -range 0x00008000 -offset 0x80000000 [get_bd_addr_spaces rocketchip_wrapper_0/M_AXI] [get_bd_addr_segs axi_bram_ctrl_0/S_AXI/Mem0] SEG_axi_bram_ctrl_0_Mem0
+  create_bd_addr_seg -range 0x00008000 -offset 0x80000000 [get_bd_addr_spaces rocketchip_wrapper_0/M_AXI_MMIO] [get_bd_addr_segs axi_bram_ctrl_0/S_AXI/Mem0] SEG_axi_bram_ctrl_0_Mem0
   create_bd_addr_seg -range 0x00010000 -offset 0x60600000 [get_bd_addr_spaces rocketchip_wrapper_0/M_AXI] [get_bd_addr_segs axi_uartlite_0/S_AXI/Reg] SEG_axi_uartlite_0_Reg
   create_bd_addr_seg -range 0x00010000 -offset 0x60600000 [get_bd_addr_spaces rocketchip_wrapper_0/M_AXI_MMIO] [get_bd_addr_segs axi_uartlite_0/S_AXI/Reg] SEG_axi_uartlite_0_Reg
 

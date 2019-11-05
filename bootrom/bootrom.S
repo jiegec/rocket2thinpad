@@ -1,4 +1,4 @@
-#define DRAM_BASE 0x80000000
+#define DRAM_TOP 0x80008000
 
 .section .text.start, "ax", @progbits
 .globl _start
@@ -38,7 +38,8 @@ boot_core:
   add a1, a0, a1
 boot_core_hart0:
   sw zero, 0(a1) // clear the interrupt
-  li a0, DRAM_BASE // program reset vector
+  li sp, DRAM_TOP // setup stack
+  la a0, bootloader // program reset vector
   csrw mepc, a0 // return from interrupt to start of user program
   csrr a0, mhartid // hartid for next level bootloader
   la a1, _dtb // dtb address for next level bootloader

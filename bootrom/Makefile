@@ -14,14 +14,14 @@ dump: $(bootrom_dump)
 %.img: %.elf
 	$(OBJCOPY) -O binary --change-addresses=-0x10000 $< $@
 
-%.rv32.elf: %.S linker.ld
-	$(GCC) $(CFLAGS_RV32) -Tlinker.ld $< -nostdlib -static -o $@
+%.rv32.elf: %.S bootloader.c linker.ld
+	$(GCC) $(CFLAGS_RV32) -Tlinker.ld $^ -nostdlib -ffreestanding -static -o $@
 
-%.rv64.elf: %.S linker.ld
-	$(GCC) $(CFLAGS_RV64) -Tlinker.ld $< -nostdlib -static -o $@
+%.rv64.elf: %.S bootloader.c linker.ld
+	$(GCC) $(CFLAGS_RV64) -Tlinker.ld $^ -nostdlib -ffreestanding -static -o $@
 
 %.dump: %.elf
-	$(OBJDUMP) -d $< > $@
+	$(OBJDUMP) -D $< > $@
 
 clean:
 	rm -f *.elf *.dump *.img
