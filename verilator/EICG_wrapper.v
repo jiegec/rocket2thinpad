@@ -1,0 +1,1 @@
+../rocket-chip/src/main/resources/vsrc/EICG_wrapper.v

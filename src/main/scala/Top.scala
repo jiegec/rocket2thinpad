@@ -26,7 +26,7 @@ class RocketChip(implicit val p: Parameters) extends Module {
   target.interrupts := io.interrupts
   target.debug.map { debug =>
     debug.clockeddmi.map { clockeddmi =>
-      clockeddmi.dmiReset := true.B
+      clockeddmi.dmiReset := reset
       clockeddmi.dmiClock := clock
       clockeddmi.dmi.req.valid := false.B
       clockeddmi.dmi.req.bits.op := 0.U

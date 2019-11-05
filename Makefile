@@ -19,7 +19,7 @@ FIRRTL ?= java -Xmx2G -Xss8M -cp $(FIRRTL_JAR) firrtl.Driver
 
 all: $(BUILD)/$(TOP_MODULE_PROJECT).$(CONFIG).v
 
-$(FIRRTL_JAR): $(shell find $(ROCKET_DIR)/firrtl/SRC/main/scala -iname "*.scala" 2> /dev/null)
+$(FIRRTL_JAR): $(shell find $(ROCKET_DIR)/firrtl/src/main/scala -iname "*.scala" 2> /dev/null)
 	$(MAKE) -C $(ROCKET_DIR)/firrtl SBT="$(SBT)" root_dir=$(ROCKET_DIR)/firrtl build-scala
 
 CHISEL_ARGS := $(BUILD)
