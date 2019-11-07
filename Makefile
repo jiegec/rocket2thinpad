@@ -39,6 +39,8 @@ $(BUILD)/$(TOP_MODULE_PROJECT).$(CONFIG).fir: $(ROCKETCHIP_STAMP) $(call LOOKUP_
 
 $(BUILD)/$(TOP_MODULE_PROJECT).$(CONFIG).v: $(BUILD)/$(TOP_MODULE_PROJECT).$(CONFIG).fir $(FIRRTL_JAR)
 	$(FIRRTL) -i $< -o $@ -X verilog
+	cp $@ $@.bak
+	sed 's/wire \[63:0\] coreMonitorBundle/(* mark_debug="true" *) \0/g' $@.bak > $@
 
 clean:
 	rm -rf build/*
