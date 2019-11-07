@@ -1,0 +1,870 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<spirit:component xmlns:xilinx="http://www.xilinx.com" xmlns:spirit="http://www.spiritconsortium.org/XMLSchema/SPIRIT/1685-2009" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <spirit:vendor>jiegec.me</spirit:vendor>
+  <spirit:library>customized_ip</spirit:library>
+  <spirit:name>design_1_sram_converter_0_1</spirit:name>
+  <spirit:version>1.0</spirit:version>
+  <spirit:busInterfaces>
+    <spirit:busInterface>
+      <spirit:name>ram</spirit:name>
+      <spirit:busType spirit:vendor="xilinx.com" spirit:library="interface" spirit:name="emc" spirit:version="1.0"/>
+      <spirit:abstractionType spirit:vendor="xilinx.com" spirit:library="interface" spirit:name="emc_rtl" spirit:version="1.0"/>
+      <spirit:slave/>
+      <spirit:portMaps>
+        <spirit:portMap>
+          <spirit:logicalPort>
+            <spirit:name>DQ_I</spirit:name>
+          </spirit:logicalPort>
+          <spirit:physicalPort>
+            <spirit:name>ram_dq_i</spirit:name>
+          </spirit:physicalPort>
+        </spirit:portMap>
+        <spirit:portMap>
+          <spirit:logicalPort>
+            <spirit:name>DQ_O</spirit:name>
+          </spirit:logicalPort>
+          <spirit:physicalPort>
+            <spirit:name>ram_dq_o</spirit:name>
+          </spirit:physicalPort>
+        </spirit:portMap>
+        <spirit:portMap>
+          <spirit:logicalPort>
+            <spirit:name>DQ_T</spirit:name>
+          </spirit:logicalPort>
+          <spirit:physicalPort>
+            <spirit:name>ram_dq_t</spirit:name>
+          </spirit:physicalPort>
+        </spirit:portMap>
+        <spirit:portMap>
+          <spirit:logicalPort>
+            <spirit:name>ADDR</spirit:name>
+          </spirit:logicalPort>
+          <spirit:physicalPort>
+            <spirit:name>ram_addr</spirit:name>
+          </spirit:physicalPort>
+        </spirit:portMap>
+        <spirit:portMap>
+          <spirit:logicalPort>
+            <spirit:name>CE</spirit:name>
+          </spirit:logicalPort>
+          <spirit:physicalPort>
+            <spirit:name>ram_ce</spirit:name>
+          </spirit:physicalPort>
+        </spirit:portMap>
+        <spirit:portMap>
+          <spirit:logicalPort>
+            <spirit:name>CE_N</spirit:name>
+          </spirit:logicalPort>
+          <spirit:physicalPort>
+            <spirit:name>ram_ce_n</spirit:name>
+          </spirit:physicalPort>
+        </spirit:portMap>
+        <spirit:portMap>
+          <spirit:logicalPort>
+            <spirit:name>OEN</spirit:name>
+          </spirit:logicalPort>
+          <spirit:physicalPort>
+            <spirit:name>ram_oen</spirit:name>
+          </spirit:physicalPort>
+        </spirit:portMap>
+        <spirit:portMap>
+          <spirit:logicalPort>
+            <spirit:name>WEN</spirit:name>
+          </spirit:logicalPort>
+          <spirit:physicalPort>
+            <spirit:name>ram_wen</spirit:name>
+          </spirit:physicalPort>
+        </spirit:portMap>
+        <spirit:portMap>
+          <spirit:logicalPort>
+            <spirit:name>BEN</spirit:name>
+          </spirit:logicalPort>
+          <spirit:physicalPort>
+            <spirit:name>ram_ben</spirit:name>
+          </spirit:physicalPort>
+        </spirit:portMap>
+        <spirit:portMap>
+          <spirit:logicalPort>
+            <spirit:name>QWEN</spirit:name>
+          </spirit:logicalPort>
+          <spirit:physicalPort>
+            <spirit:name>ram_qwen</spirit:name>
+          </spirit:physicalPort>
+        </spirit:portMap>
+        <spirit:portMap>
+          <spirit:logicalPort>
+            <spirit:name>RPN</spirit:name>
+          </spirit:logicalPort>
+          <spirit:physicalPort>
+            <spirit:name>ram_rpn</spirit:name>
+          </spirit:physicalPort>
+        </spirit:portMap>
+        <spirit:portMap>
+          <spirit:logicalPort>
+            <spirit:name>ADV_LDN</spirit:name>
+          </spirit:logicalPort>
+          <spirit:physicalPort>
+            <spirit:name>ram_adv_ldn</spirit:name>
+          </spirit:physicalPort>
+        </spirit:portMap>
+        <spirit:portMap>
+          <spirit:logicalPort>
+            <spirit:name>LBON</spirit:name>
+          </spirit:logicalPort>
+          <spirit:physicalPort>
+            <spirit:name>ram_lbon</spirit:name>
+          </spirit:physicalPort>
+        </spirit:portMap>
+        <spirit:portMap>
+          <spirit:logicalPort>
+            <spirit:name>CLKEN</spirit:name>
+          </spirit:logicalPort>
+          <spirit:physicalPort>
+            <spirit:name>ram_clken</spirit:name>
+          </spirit:physicalPort>
+        </spirit:portMap>
+        <spirit:portMap>
+          <spirit:logicalPort>
+            <spirit:name>RNW</spirit:name>
+          </spirit:logicalPort>
+          <spirit:physicalPort>
+            <spirit:name>ram_rnw</spirit:name>
+          </spirit:physicalPort>
+        </spirit:portMap>
+        <spirit:portMap>
+          <spirit:logicalPort>
+            <spirit:name>CRE</spirit:name>
+          </spirit:logicalPort>
+          <spirit:physicalPort>
+            <spirit:name>ram_cre</spirit:name>
+          </spirit:physicalPort>
+        </spirit:portMap>
+        <spirit:portMap>
+          <spirit:logicalPort>
+            <spirit:name>WAIT</spirit:name>
+          </spirit:logicalPort>
+          <spirit:physicalPort>
+            <spirit:name>ram_wait</spirit:name>
+          </spirit:physicalPort>
+        </spirit:portMap>
+      </spirit:portMaps>
+    </spirit:busInterface>
+    <spirit:busInterface>
+      <spirit:name>sram_data</spirit:name>
+      <spirit:busType spirit:vendor="xilinx.com" spirit:library="interface" spirit:name="gpio" spirit:version="1.0"/>
+      <spirit:abstractionType spirit:vendor="xilinx.com" spirit:library="interface" spirit:name="gpio_rtl" spirit:version="1.0"/>
+      <spirit:master/>
+      <spirit:portMaps>
+        <spirit:portMap>
+          <spirit:logicalPort>
+            <spirit:name>TRI_O</spirit:name>
+          </spirit:logicalPort>
+          <spirit:physicalPort>
+            <spirit:name>sram_data_o</spirit:name>
+          </spirit:physicalPort>
+        </spirit:portMap>
+        <spirit:portMap>
+          <spirit:logicalPort>
+            <spirit:name>TRI_T</spirit:name>
+          </spirit:logicalPort>
+          <spirit:physicalPort>
+            <spirit:name>sram_data_t</spirit:name>
+          </spirit:physicalPort>
+        </spirit:portMap>
+        <spirit:portMap>
+          <spirit:logicalPort>
+            <spirit:name>TRI_I</spirit:name>
+          </spirit:logicalPort>
+          <spirit:physicalPort>
+            <spirit:name>sram_data_i</spirit:name>
+          </spirit:physicalPort>
+        </spirit:portMap>
+      </spirit:portMaps>
+    </spirit:busInterface>
+  </spirit:busInterfaces>
+  <spirit:model>
+    <spirit:views>
+      <spirit:view>
+        <spirit:name>xilinx_anylanguagesynthesis</spirit:name>
+        <spirit:displayName>Synthesis</spirit:displayName>
+        <spirit:envIdentifier>:vivado.xilinx.com:synthesis</spirit:envIdentifier>
+        <spirit:modelName>sram_converter</spirit:modelName>
+        <spirit:fileSetRef>
+          <spirit:localName>xilinx_anylanguagesynthesis_view_fileset</spirit:localName>
+        </spirit:fileSetRef>
+        <spirit:parameters>
+          <spirit:parameter>
+            <spirit:name>GENtimestamp</spirit:name>
+            <spirit:value>Thu Nov 07 03:34:27 UTC 2019</spirit:value>
+          </spirit:parameter>
+          <spirit:parameter>
+            <spirit:name>outputProductCRC</spirit:name>
+            <spirit:value>9:729e608c</spirit:value>
+          </spirit:parameter>
+        </spirit:parameters>
+      </spirit:view>
+      <spirit:view>
+        <spirit:name>xilinx_verilogsynthesiswrapper</spirit:name>
+        <spirit:displayName>Verilog Synthesis Wrapper</spirit:displayName>
+        <spirit:envIdentifier>verilogSource:vivado.xilinx.com:synthesis.wrapper</spirit:envIdentifier>
+        <spirit:language>verilog</spirit:language>
+        <spirit:modelName>design_1_sram_converter_0_1</spirit:modelName>
+        <spirit:fileSetRef>
+          <spirit:localName>xilinx_verilogsynthesiswrapper_view_fileset</spirit:localName>
+        </spirit:fileSetRef>
+        <spirit:parameters>
+          <spirit:parameter>
+            <spirit:name>GENtimestamp</spirit:name>
+            <spirit:value>Thu Nov 07 03:34:27 UTC 2019</spirit:value>
+          </spirit:parameter>
+          <spirit:parameter>
+            <spirit:name>outputProductCRC</spirit:name>
+            <spirit:value>9:729e608c</spirit:value>
+          </spirit:parameter>
+        </spirit:parameters>
+      </spirit:view>
+      <spirit:view>
+        <spirit:name>xilinx_anylanguagebehavioralsimulation</spirit:name>
+        <spirit:displayName>Simulation</spirit:displayName>
+        <spirit:envIdentifier>:vivado.xilinx.com:simulation</spirit:envIdentifier>
+        <spirit:modelName>sram_converter</spirit:modelName>
+        <spirit:fileSetRef>
+          <spirit:localName>xilinx_anylanguagebehavioralsimulation_view_fileset</spirit:localName>
+        </spirit:fileSetRef>
+        <spirit:parameters>
+          <spirit:parameter>
+            <spirit:name>GENtimestamp</spirit:name>
+            <spirit:value>Thu Nov 07 03:34:27 UTC 2019</spirit:value>
+          </spirit:parameter>
+          <spirit:parameter>
+            <spirit:name>outputProductCRC</spirit:name>
+            <spirit:value>9:fe7f4f26</spirit:value>
+          </spirit:parameter>
+        </spirit:parameters>
+      </spirit:view>
+      <spirit:view>
+        <spirit:name>xilinx_verilogsimulationwrapper</spirit:name>
+        <spirit:displayName>Verilog Simulation Wrapper</spirit:displayName>
+        <spirit:envIdentifier>verilogSource:vivado.xilinx.com:simulation.wrapper</spirit:envIdentifier>
+        <spirit:language>verilog</spirit:language>
+        <spirit:modelName>design_1_sram_converter_0_1</spirit:modelName>
+        <spirit:fileSetRef>
+          <spirit:localName>xilinx_verilogsimulationwrapper_view_fileset</spirit:localName>
+        </spirit:fileSetRef>
+        <spirit:parameters>
+          <spirit:parameter>
+            <spirit:name>GENtimestamp</spirit:name>
+            <spirit:value>Thu Nov 07 03:34:27 UTC 2019</spirit:value>
+          </spirit:parameter>
+          <spirit:parameter>
+            <spirit:name>outputProductCRC</spirit:name>
+            <spirit:value>9:fe7f4f26</spirit:value>
+          </spirit:parameter>
+        </spirit:parameters>
+      </spirit:view>
+      <spirit:view>
+        <spirit:name>xilinx_externalfiles</spirit:name>
+        <spirit:displayName>External Files</spirit:displayName>
+        <spirit:envIdentifier>:vivado.xilinx.com:external.files</spirit:envIdentifier>
+        <spirit:fileSetRef>
+          <spirit:localName>xilinx_externalfiles_view_fileset</spirit:localName>
+        </spirit:fileSetRef>
+        <spirit:parameters>
+          <spirit:parameter>
+            <spirit:name>GENtimestamp</spirit:name>
+            <spirit:value>Thu Nov 07 03:34:54 UTC 2019</spirit:value>
+          </spirit:parameter>
+          <spirit:parameter>
+            <spirit:name>outputProductCRC</spirit:name>
+            <spirit:value>9:729e608c</spirit:value>
+          </spirit:parameter>
+        </spirit:parameters>
+      </spirit:view>
+    </spirit:views>
+    <spirit:ports>
+      <spirit:port>
+        <spirit:name>ram_addr</spirit:name>
+        <spirit:wire>
+          <spirit:direction>in</spirit:direction>
+          <spirit:vector>
+            <spirit:left spirit:format="long">31</spirit:left>
+            <spirit:right spirit:format="long">0</spirit:right>
+          </spirit:vector>
+          <spirit:wireTypeDefs>
+            <spirit:wireTypeDef>
+              <spirit:typeName>std_logic_vector</spirit:typeName>
+              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
+              <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
+            </spirit:wireTypeDef>
+          </spirit:wireTypeDefs>
+        </spirit:wire>
+      </spirit:port>
+      <spirit:port>
+        <spirit:name>ram_adv_ldn</spirit:name>
+        <spirit:wire>
+          <spirit:direction>in</spirit:direction>
+          <spirit:wireTypeDefs>
+            <spirit:wireTypeDef>
+              <spirit:typeName>std_logic</spirit:typeName>
+              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
+              <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
+            </spirit:wireTypeDef>
+          </spirit:wireTypeDefs>
+        </spirit:wire>
+      </spirit:port>
+      <spirit:port>
+        <spirit:name>ram_ben</spirit:name>
+        <spirit:wire>
+          <spirit:direction>in</spirit:direction>
+          <spirit:vector>
+            <spirit:left spirit:format="long">3</spirit:left>
+            <spirit:right spirit:format="long">0</spirit:right>
+          </spirit:vector>
+          <spirit:wireTypeDefs>
+            <spirit:wireTypeDef>
+              <spirit:typeName>std_logic_vector</spirit:typeName>
+              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
+              <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
+            </spirit:wireTypeDef>
+          </spirit:wireTypeDefs>
+        </spirit:wire>
+      </spirit:port>
+      <spirit:port>
+        <spirit:name>ram_ce</spirit:name>
+        <spirit:wire>
+          <spirit:direction>in</spirit:direction>
+          <spirit:vector>
+            <spirit:left spirit:format="long">0</spirit:left>
+            <spirit:right spirit:format="long">0</spirit:right>
+          </spirit:vector>
+          <spirit:wireTypeDefs>
+            <spirit:wireTypeDef>
+              <spirit:typeName>std_logic_vector</spirit:typeName>
+              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
+              <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
+            </spirit:wireTypeDef>
+          </spirit:wireTypeDefs>
+        </spirit:wire>
+      </spirit:port>
+      <spirit:port>
+        <spirit:name>ram_ce_n</spirit:name>
+        <spirit:wire>
+          <spirit:direction>in</spirit:direction>
+          <spirit:vector>
+            <spirit:left spirit:format="long">0</spirit:left>
+            <spirit:right spirit:format="long">0</spirit:right>
+          </spirit:vector>
+          <spirit:wireTypeDefs>
+            <spirit:wireTypeDef>
+              <spirit:typeName>std_logic_vector</spirit:typeName>
+              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
+              <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
+            </spirit:wireTypeDef>
+          </spirit:wireTypeDefs>
+        </spirit:wire>
+      </spirit:port>
+      <spirit:port>
+        <spirit:name>ram_clken</spirit:name>
+        <spirit:wire>
+          <spirit:direction>in</spirit:direction>
+          <spirit:wireTypeDefs>
+            <spirit:wireTypeDef>
+              <spirit:typeName>std_logic</spirit:typeName>
+              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
+              <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
+            </spirit:wireTypeDef>
+          </spirit:wireTypeDefs>
+        </spirit:wire>
+      </spirit:port>
+      <spirit:port>
+        <spirit:name>ram_cre</spirit:name>
+        <spirit:wire>
+          <spirit:direction>in</spirit:direction>
+          <spirit:wireTypeDefs>
+            <spirit:wireTypeDef>
+              <spirit:typeName>std_logic</spirit:typeName>
+              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
+              <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
+            </spirit:wireTypeDef>
+          </spirit:wireTypeDefs>
+        </spirit:wire>
+      </spirit:port>
+      <spirit:port>
+        <spirit:name>ram_dq_i</spirit:name>
+        <spirit:wire>
+          <spirit:direction>out</spirit:direction>
+          <spirit:vector>
+            <spirit:left spirit:format="long">31</spirit:left>
+            <spirit:right spirit:format="long">0</spirit:right>
+          </spirit:vector>
+          <spirit:wireTypeDefs>
+            <spirit:wireTypeDef>
+              <spirit:typeName>std_logic_vector</spirit:typeName>
+              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
+              <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
+            </spirit:wireTypeDef>
+          </spirit:wireTypeDefs>
+        </spirit:wire>
+      </spirit:port>
+      <spirit:port>
+        <spirit:name>ram_dq_o</spirit:name>
+        <spirit:wire>
+          <spirit:direction>in</spirit:direction>
+          <spirit:vector>
+            <spirit:left spirit:format="long">31</spirit:left>
+            <spirit:right spirit:format="long">0</spirit:right>
+          </spirit:vector>
+          <spirit:wireTypeDefs>
+            <spirit:wireTypeDef>
+              <spirit:typeName>std_logic_vector</spirit:typeName>
+              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
+              <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
+            </spirit:wireTypeDef>
+          </spirit:wireTypeDefs>
+        </spirit:wire>
+      </spirit:port>
+      <spirit:port>
+        <spirit:name>ram_dq_t</spirit:name>
+        <spirit:wire>
+          <spirit:direction>in</spirit:direction>
+          <spirit:vector>
+            <spirit:left spirit:format="long">31</spirit:left>
+            <spirit:right spirit:format="long">0</spirit:right>
+          </spirit:vector>
+          <spirit:wireTypeDefs>
+            <spirit:wireTypeDef>
+              <spirit:typeName>std_logic_vector</spirit:typeName>
+              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
+              <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
+            </spirit:wireTypeDef>
+          </spirit:wireTypeDefs>
+        </spirit:wire>
+      </spirit:port>
+      <spirit:port>
+        <spirit:name>ram_lbon</spirit:name>
+        <spirit:wire>
+          <spirit:direction>in</spirit:direction>
+          <spirit:wireTypeDefs>
+            <spirit:wireTypeDef>
+              <spirit:typeName>std_logic</spirit:typeName>
+              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
+              <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
+            </spirit:wireTypeDef>
+          </spirit:wireTypeDefs>
+        </spirit:wire>
+      </spirit:port>
+      <spirit:port>
+        <spirit:name>ram_oen</spirit:name>
+        <spirit:wire>
+          <spirit:direction>in</spirit:direction>
+          <spirit:vector>
+            <spirit:left spirit:format="long">0</spirit:left>
+            <spirit:right spirit:format="long">0</spirit:right>
+          </spirit:vector>
+          <spirit:wireTypeDefs>
+            <spirit:wireTypeDef>
+              <spirit:typeName>std_logic_vector</spirit:typeName>
+              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
+              <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
+            </spirit:wireTypeDef>
+          </spirit:wireTypeDefs>
+        </spirit:wire>
+      </spirit:port>
+      <spirit:port>
+        <spirit:name>ram_qwen</spirit:name>
+        <spirit:wire>
+          <spirit:direction>in</spirit:direction>
+          <spirit:vector>
+            <spirit:left spirit:format="long">3</spirit:left>
+            <spirit:right spirit:format="long">0</spirit:right>
+          </spirit:vector>
+          <spirit:wireTypeDefs>
+            <spirit:wireTypeDef>
+              <spirit:typeName>std_logic_vector</spirit:typeName>
+              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
+              <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
+            </spirit:wireTypeDef>
+          </spirit:wireTypeDefs>
+        </spirit:wire>
+      </spirit:port>
+      <spirit:port>
+        <spirit:name>ram_rnw</spirit:name>
+        <spirit:wire>
+          <spirit:direction>in</spirit:direction>
+          <spirit:wireTypeDefs>
+            <spirit:wireTypeDef>
+              <spirit:typeName>std_logic</spirit:typeName>
+              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
+              <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
+            </spirit:wireTypeDef>
+          </spirit:wireTypeDefs>
+        </spirit:wire>
+      </spirit:port>
+      <spirit:port>
+        <spirit:name>ram_rpn</spirit:name>
+        <spirit:wire>
+          <spirit:direction>in</spirit:direction>
+          <spirit:wireTypeDefs>
+            <spirit:wireTypeDef>
+              <spirit:typeName>std_logic</spirit:typeName>
+              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
+              <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
+            </spirit:wireTypeDef>
+          </spirit:wireTypeDefs>
+        </spirit:wire>
+      </spirit:port>
+      <spirit:port>
+        <spirit:name>ram_wait</spirit:name>
+        <spirit:wire>
+          <spirit:direction>out</spirit:direction>
+          <spirit:vector>
+            <spirit:left spirit:format="long">0</spirit:left>
+            <spirit:right spirit:format="long">0</spirit:right>
+          </spirit:vector>
+          <spirit:wireTypeDefs>
+            <spirit:wireTypeDef>
+              <spirit:typeName>std_logic_vector</spirit:typeName>
+              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
+              <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
+            </spirit:wireTypeDef>
+          </spirit:wireTypeDefs>
+        </spirit:wire>
+      </spirit:port>
+      <spirit:port>
+        <spirit:name>ram_wen</spirit:name>
+        <spirit:wire>
+          <spirit:direction>in</spirit:direction>
+          <spirit:wireTypeDefs>
+            <spirit:wireTypeDef>
+              <spirit:typeName>std_logic</spirit:typeName>
+              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
+              <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
+            </spirit:wireTypeDef>
+          </spirit:wireTypeDefs>
+        </spirit:wire>
+      </spirit:port>
+      <spirit:port>
+        <spirit:name>sram_addr</spirit:name>
+        <spirit:wire>
+          <spirit:direction>out</spirit:direction>
+          <spirit:vector>
+            <spirit:left spirit:format="long">19</spirit:left>
+            <spirit:right spirit:format="long">0</spirit:right>
+          </spirit:vector>
+          <spirit:wireTypeDefs>
+            <spirit:wireTypeDef>
+              <spirit:typeName>std_logic_vector</spirit:typeName>
+              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
+              <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
+            </spirit:wireTypeDef>
+          </spirit:wireTypeDefs>
+        </spirit:wire>
+      </spirit:port>
+      <spirit:port>
+        <spirit:name>sram_be_n</spirit:name>
+        <spirit:wire>
+          <spirit:direction>out</spirit:direction>
+          <spirit:vector>
+            <spirit:left spirit:format="long">3</spirit:left>
+            <spirit:right spirit:format="long">0</spirit:right>
+          </spirit:vector>
+          <spirit:wireTypeDefs>
+            <spirit:wireTypeDef>
+              <spirit:typeName>std_logic_vector</spirit:typeName>
+              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
+              <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
+            </spirit:wireTypeDef>
+          </spirit:wireTypeDefs>
+        </spirit:wire>
+      </spirit:port>
+      <spirit:port>
+        <spirit:name>sram_ce_n</spirit:name>
+        <spirit:wire>
+          <spirit:direction>out</spirit:direction>
+          <spirit:wireTypeDefs>
+            <spirit:wireTypeDef>
+              <spirit:typeName>std_logic</spirit:typeName>
+              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
+              <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
+            </spirit:wireTypeDef>
+          </spirit:wireTypeDefs>
+        </spirit:wire>
+      </spirit:port>
+      <spirit:port>
+        <spirit:name>sram_oe_n</spirit:name>
+        <spirit:wire>
+          <spirit:direction>out</spirit:direction>
+          <spirit:wireTypeDefs>
+            <spirit:wireTypeDef>
+              <spirit:typeName>std_logic</spirit:typeName>
+              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
+              <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
+            </spirit:wireTypeDef>
+          </spirit:wireTypeDefs>
+        </spirit:wire>
+      </spirit:port>
+      <spirit:port>
+        <spirit:name>sram_we_n</spirit:name>
+        <spirit:wire>
+          <spirit:direction>out</spirit:direction>
+          <spirit:wireTypeDefs>
+            <spirit:wireTypeDef>
+              <spirit:typeName>std_logic</spirit:typeName>
+              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
+              <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
+            </spirit:wireTypeDef>
+          </spirit:wireTypeDefs>
+        </spirit:wire>
+      </spirit:port>
+      <spirit:port>
+        <spirit:name>sram_data_i</spirit:name>
+        <spirit:wire>
+          <spirit:direction>in</spirit:direction>
+          <spirit:vector>
+            <spirit:left spirit:format="long">31</spirit:left>
+            <spirit:right spirit:format="long">0</spirit:right>
+          </spirit:vector>
+          <spirit:wireTypeDefs>
+            <spirit:wireTypeDef>
+              <spirit:typeName>std_logic_vector</spirit:typeName>
+              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
+              <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
+            </spirit:wireTypeDef>
+          </spirit:wireTypeDefs>
+        </spirit:wire>
+      </spirit:port>
+      <spirit:port>
+        <spirit:name>sram_data_o</spirit:name>
+        <spirit:wire>
+          <spirit:direction>out</spirit:direction>
+          <spirit:vector>
+            <spirit:left spirit:format="long">31</spirit:left>
+            <spirit:right spirit:format="long">0</spirit:right>
+          </spirit:vector>
+          <spirit:wireTypeDefs>
+            <spirit:wireTypeDef>
+              <spirit:typeName>std_logic_vector</spirit:typeName>
+              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
+              <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
+            </spirit:wireTypeDef>
+          </spirit:wireTypeDefs>
+        </spirit:wire>
+      </spirit:port>
+      <spirit:port>
+        <spirit:name>sram_data_t</spirit:name>
+        <spirit:wire>
+          <spirit:direction>out</spirit:direction>
+          <spirit:vector>
+            <spirit:left spirit:format="long">31</spirit:left>
+            <spirit:right spirit:format="long">0</spirit:right>
+          </spirit:vector>
+          <spirit:wireTypeDefs>
+            <spirit:wireTypeDef>
+              <spirit:typeName>std_logic_vector</spirit:typeName>
+              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
+              <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
+            </spirit:wireTypeDef>
+          </spirit:wireTypeDefs>
+        </spirit:wire>
+      </spirit:port>
+    </spirit:ports>
+  </spirit:model>
+  <spirit:fileSets>
+    <spirit:fileSet>
+      <spirit:name>xilinx_anylanguagesynthesis_view_fileset</spirit:name>
+      <spirit:file>
+        <spirit:name>../../ipshared/769c/sram_converter.v</spirit:name>
+        <spirit:fileType>verilogSource</spirit:fileType>
+      </spirit:file>
+    </spirit:fileSet>
+    <spirit:fileSet>
+      <spirit:name>xilinx_verilogsynthesiswrapper_view_fileset</spirit:name>
+      <spirit:file>
+        <spirit:name>synth/design_1_sram_converter_0_1.v</spirit:name>
+        <spirit:fileType>verilogSource</spirit:fileType>
+        <spirit:logicalName>xil_defaultlib</spirit:logicalName>
+      </spirit:file>
+    </spirit:fileSet>
+    <spirit:fileSet>
+      <spirit:name>xilinx_anylanguagebehavioralsimulation_view_fileset</spirit:name>
+      <spirit:file>
+        <spirit:name>../../ipshared/769c/sram_converter.v</spirit:name>
+        <spirit:fileType>verilogSource</spirit:fileType>
+      </spirit:file>
+    </spirit:fileSet>
+    <spirit:fileSet>
+      <spirit:name>xilinx_verilogsimulationwrapper_view_fileset</spirit:name>
+      <spirit:file>
+        <spirit:name>sim/design_1_sram_converter_0_1.v</spirit:name>
+        <spirit:fileType>verilogSource</spirit:fileType>
+        <spirit:logicalName>xil_defaultlib</spirit:logicalName>
+      </spirit:file>
+    </spirit:fileSet>
+    <spirit:fileSet>
+      <spirit:name>xilinx_externalfiles_view_fileset</spirit:name>
+      <spirit:file>
+        <spirit:name>design_1_sram_converter_0_1.dcp</spirit:name>
+        <spirit:userFileType>dcp</spirit:userFileType>
+        <spirit:userFileType>USED_IN_implementation</spirit:userFileType>
+        <spirit:userFileType>USED_IN_synthesis</spirit:userFileType>
+        <spirit:logicalName>xil_defaultlib</spirit:logicalName>
+      </spirit:file>
+      <spirit:file>
+        <spirit:name>design_1_sram_converter_0_1_stub.v</spirit:name>
+        <spirit:fileType>verilogSource</spirit:fileType>
+        <spirit:userFileType>USED_IN_synth_blackbox_stub</spirit:userFileType>
+        <spirit:logicalName>xil_defaultlib</spirit:logicalName>
+      </spirit:file>
+      <spirit:file>
+        <spirit:name>design_1_sram_converter_0_1_stub.vhdl</spirit:name>
+        <spirit:fileType>vhdlSource</spirit:fileType>
+        <spirit:userFileType>USED_IN_synth_blackbox_stub</spirit:userFileType>
+        <spirit:logicalName>xil_defaultlib</spirit:logicalName>
+      </spirit:file>
+      <spirit:file>
+        <spirit:name>design_1_sram_converter_0_1_sim_netlist.v</spirit:name>
+        <spirit:fileType>verilogSource</spirit:fileType>
+        <spirit:userFileType>USED_IN_simulation</spirit:userFileType>
+        <spirit:userFileType>USED_IN_single_language</spirit:userFileType>
+        <spirit:logicalName>xil_defaultlib</spirit:logicalName>
+      </spirit:file>
+      <spirit:file>
+        <spirit:name>design_1_sram_converter_0_1_sim_netlist.vhdl</spirit:name>
+        <spirit:fileType>vhdlSource</spirit:fileType>
+        <spirit:userFileType>USED_IN_simulation</spirit:userFileType>
+        <spirit:userFileType>USED_IN_single_language</spirit:userFileType>
+        <spirit:logicalName>xil_defaultlib</spirit:logicalName>
+      </spirit:file>
+    </spirit:fileSet>
+  </spirit:fileSets>
+  <spirit:description>SRAM Converter</spirit:description>
+  <spirit:parameters>
+    <spirit:parameter>
+      <spirit:name>Component_Name</spirit:name>
+      <spirit:value spirit:resolve="user" spirit:id="PARAM_VALUE.Component_Name" spirit:order="1">design_1_sram_converter_0_1</spirit:value>
+    </spirit:parameter>
+  </spirit:parameters>
+  <spirit:vendorExtensions>
+    <xilinx:coreExtensions>
+      <xilinx:displayName>SRAM Converter</xilinx:displayName>
+      <xilinx:definitionSource>package_project</xilinx:definitionSource>
+      <xilinx:xpmLibraries>
+        <xilinx:xpmLibrary>XPM_CDC</xilinx:xpmLibrary>
+        <xilinx:xpmLibrary>XPM_MEMORY</xilinx:xpmLibrary>
+      </xilinx:xpmLibraries>
+      <xilinx:coreRevision>6</xilinx:coreRevision>
+      <xilinx:tags>
+        <xilinx:tag xilinx:name="nopcore"/>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@5f519654_ARCHIVE_LOCATION">/home/oslab/rocket2thinpad/vivado/ip</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@3a2e686d_ARCHIVE_LOCATION">/home/oslab/rocket2thinpad/vivado/ip</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@1dd7442b_ARCHIVE_LOCATION">/home/oslab/rocket2thinpad/vivado/ip</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@3de185fa_ARCHIVE_LOCATION">/home/oslab/rocket2thinpad/vivado/ip</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@ccd7358_ARCHIVE_LOCATION">/home/oslab/rocket2thinpad/vivado/ip</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@7f17936_ARCHIVE_LOCATION">/home/oslab/rocket2thinpad/vivado/ip</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@64a5381_ARCHIVE_LOCATION">/home/oslab/rocket2thinpad/vivado/ip</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@b5a5a26_ARCHIVE_LOCATION">/home/oslab/rocket2thinpad/vivado/ip</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@16d97e28_ARCHIVE_LOCATION">/home/oslab/rocket2thinpad/vivado/ip</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@4f4cad3d_ARCHIVE_LOCATION">/home/oslab/rocket2thinpad/vivado/ip</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@758c3475_ARCHIVE_LOCATION">/home/oslab/rocket2thinpad/vivado/ip</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@7e55956b_ARCHIVE_LOCATION">/home/oslab/rocket2thinpad/vivado/ip</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@2e018a72_ARCHIVE_LOCATION">/home/oslab/rocket2thinpad/vivado/ip</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@4cab5fe1_ARCHIVE_LOCATION">/home/oslab/rocket2thinpad/vivado/ip</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@7cae68f0_ARCHIVE_LOCATION">/home/oslab/rocket2thinpad/vivado/ip</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@1286ae4d_ARCHIVE_LOCATION">/home/oslab/rocket2thinpad/vivado/ip</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@7babbc89_ARCHIVE_LOCATION">/home/oslab/rocket2thinpad/vivado/ip</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@18184348_ARCHIVE_LOCATION">/home/oslab/rocket2thinpad/vivado/ip</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@a537393_ARCHIVE_LOCATION">/home/oslab/rocket2thinpad/vivado/ip</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@7360705f_ARCHIVE_LOCATION">/home/oslab/rocket2thinpad/vivado/ip</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@260c52d2_ARCHIVE_LOCATION">/home/oslab/rocket2thinpad/vivado/ip</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@36dd20c_ARCHIVE_LOCATION">/home/oslab/rocket2thinpad/vivado/ip</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@fa9fc2a_ARCHIVE_LOCATION">/home/oslab/rocket2thinpad/vivado/ip</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@57112c5_ARCHIVE_LOCATION">/home/oslab/rocket2thinpad/vivado/ip</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@eb38636_ARCHIVE_LOCATION">/home/oslab/rocket2thinpad/vivado/ip</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@5c4b8c_ARCHIVE_LOCATION">/home/oslab/rocket2thinpad/vivado/ip</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@688de1b9_ARCHIVE_LOCATION">/home/oslab/rocket2thinpad/vivado/ip</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@3e363fd3_ARCHIVE_LOCATION">/home/oslab/rocket2thinpad/vivado/ip</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@20ce864a_ARCHIVE_LOCATION">/home/oslab/rocket2thinpad/vivado/ip</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@1f4fff94_ARCHIVE_LOCATION">/home/oslab/rocket2thinpad/vivado/ip</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@26415216_ARCHIVE_LOCATION">/home/oslab/rocket2thinpad/vivado/ip</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@6f07e639_ARCHIVE_LOCATION">/home/oslab/rocket2thinpad/vivado/ip</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@7703d6d3_ARCHIVE_LOCATION">/home/oslab/rocket2thinpad/vivado/ip</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@768436_ARCHIVE_LOCATION">/home/oslab/rocket2thinpad/vivado/ip</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@21f9a997_ARCHIVE_LOCATION">/home/oslab/rocket2thinpad/vivado/ip</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@48b517e3_ARCHIVE_LOCATION">/home/oslab/rocket2thinpad/vivado/ip</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@2e7eaef4_ARCHIVE_LOCATION">/home/oslab/rocket2thinpad/vivado/ip</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@d01ba3f_ARCHIVE_LOCATION">/home/oslab/rocket2thinpad/vivado/ip</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@58ac52c9_ARCHIVE_LOCATION">/home/oslab/rocket2thinpad/vivado/ip</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@756b75ae_ARCHIVE_LOCATION">/home/oslab/rocket2thinpad/vivado/ip</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@5ba87a95_ARCHIVE_LOCATION">/home/oslab/rocket2thinpad/vivado/ip</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@152f6cc2_ARCHIVE_LOCATION">/home/oslab/rocket2thinpad/vivado/ip</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@7cd9f9b2_ARCHIVE_LOCATION">/home/oslab/rocket2thinpad/vivado/ip</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@50650a22_ARCHIVE_LOCATION">/home/oslab/rocket2thinpad/vivado/ip</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@4c079193_ARCHIVE_LOCATION">/home/oslab/rocket2thinpad/vivado/ip</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@23861f0a_ARCHIVE_LOCATION">/home/oslab/rocket2thinpad/vivado/ip</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@781c4af_ARCHIVE_LOCATION">/home/oslab/rocket2thinpad/vivado/ip</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@545914f1_ARCHIVE_LOCATION">/home/oslab/rocket2thinpad/vivado/ip</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@183e52bd_ARCHIVE_LOCATION">/home/oslab/rocket2thinpad/vivado/ip</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@11759c69_ARCHIVE_LOCATION">/home/oslab/rocket2thinpad/vivado/ip</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@2cfb66ad_ARCHIVE_LOCATION">/home/oslab/rocket2thinpad/vivado/ip</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@6e99201e_ARCHIVE_LOCATION">/home/oslab/rocket2thinpad/vivado/ip</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@2f051d30_ARCHIVE_LOCATION">/home/oslab/rocket2thinpad/vivado/ip</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@2ee584af_ARCHIVE_LOCATION">/home/oslab/rocket2thinpad/vivado/ip</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@ccae32e_ARCHIVE_LOCATION">/home/oslab/rocket2thinpad/vivado/ip</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@4ee2773d_ARCHIVE_LOCATION">/home/oslab/rocket2thinpad/vivado/ip</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@7ab73b87_ARCHIVE_LOCATION">/home/oslab/rocket2thinpad/vivado/ip/sram_converter</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@49cb8b3e_ARCHIVE_LOCATION">/home/oslab/rocket2thinpad/vivado/ip/sram_converter</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@66cc6110_ARCHIVE_LOCATION">/home/oslab/rocket2thinpad/vivado/ip/sram_converter</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@694e892d_ARCHIVE_LOCATION">/home/oslab/rocket2thinpad/vivado/ip/sram_converter</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@53ad0a07_ARCHIVE_LOCATION">/home/oslab/rocket2thinpad/vivado/ip/sram_converter</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@8c8ee95_ARCHIVE_LOCATION">/home/oslab/rocket2thinpad/vivado/ip/sram_converter</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@c4f2d76_ARCHIVE_LOCATION">/home/oslab/rocket2thinpad/vivado/ip/sram_converter</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@1a21fd22_ARCHIVE_LOCATION">/home/oslab/rocket2thinpad/vivado/ip/sram_converter</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@2380c60f_ARCHIVE_LOCATION">/home/oslab/rocket2thinpad/vivado/ip/sram_converter</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@60d6659f_ARCHIVE_LOCATION">/home/oslab/rocket2thinpad/vivado/ip/sram_converter</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@213b79f1_ARCHIVE_LOCATION">/home/oslab/rocket2thinpad/vivado/ip/sram_converter</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@2576eb6c_ARCHIVE_LOCATION">/home/oslab/rocket2thinpad/vivado/ip/sram_converter</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@2434ee22_ARCHIVE_LOCATION">/home/oslab/rocket2thinpad/vivado/ip/sram_converter</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@6bf25e57_ARCHIVE_LOCATION">/home/oslab/rocket2thinpad/vivado/ip/sram_converter</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@b58fe00_ARCHIVE_LOCATION">/home/oslab/rocket2thinpad/vivado/ip/sram_converter</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@6e8f820a_ARCHIVE_LOCATION">/home/oslab/rocket2thinpad/vivado/ip/sram_converter</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@17e9ef78_ARCHIVE_LOCATION">/home/oslab/rocket2thinpad/vivado/ip/sram_converter</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@3fe0b310_ARCHIVE_LOCATION">/home/oslab/rocket2thinpad/vivado/ip/sram_converter</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@7e4cd716_ARCHIVE_LOCATION">/home/oslab/rocket2thinpad/vivado/ip/sram_converter</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@43209c5b_ARCHIVE_LOCATION">/home/oslab/rocket2thinpad/vivado/ip/sram_converter</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@4bc2abcb_ARCHIVE_LOCATION">/home/oslab/rocket2thinpad/vivado/ip/sram_converter</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@3768320c_ARCHIVE_LOCATION">/home/oslab/rocket2thinpad/vivado/ip/sram_converter</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@39cf92e_ARCHIVE_LOCATION">/home/oslab/rocket2thinpad/vivado/ip/sram_converter</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@3f1661f_ARCHIVE_LOCATION">/home/oslab/rocket2thinpad/vivado/ip/sram_converter</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@79ad028a_ARCHIVE_LOCATION">/home/oslab/rocket2thinpad/vivado/ip/sram_converter</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@1547a3cf_ARCHIVE_LOCATION">/home/oslab/rocket2thinpad/vivado/ip/sram_converter</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@1387eaae_ARCHIVE_LOCATION">/home/oslab/rocket2thinpad/vivado/ip/sram_converter</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@368c01d2_ARCHIVE_LOCATION">/home/oslab/rocket2thinpad/vivado/ip/sram_converter</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@5be2f71f_ARCHIVE_LOCATION">/home/oslab/rocket2thinpad/vivado/ip/sram_converter</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@2426d8b4_ARCHIVE_LOCATION">/home/oslab/rocket2thinpad/vivado/ip/sram_converter</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@5fc77e57_ARCHIVE_LOCATION">/home/oslab/rocket2thinpad/vivado/ip/sram_converter</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@48c6e86d_ARCHIVE_LOCATION">/home/oslab/rocket2thinpad/vivado/ip/sram_converter</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@53d4ece_ARCHIVE_LOCATION">/home/oslab/rocket2thinpad/vivado/ip/sram_converter</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@7485a1d7_ARCHIVE_LOCATION">/home/oslab/rocket2thinpad/vivado/ip/sram_converter</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@58ef0859_ARCHIVE_LOCATION">/home/oslab/rocket2thinpad/vivado/ip/sram_converter</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@53c805d6_ARCHIVE_LOCATION">/home/oslab/rocket2thinpad/vivado/ip/sram_converter</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@2f6e955b_ARCHIVE_LOCATION">/home/oslab/rocket2thinpad/vivado/ip/sram_converter</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@613537e2_ARCHIVE_LOCATION">/home/oslab/rocket2thinpad/vivado/ip/sram_converter</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@5ba935fe_ARCHIVE_LOCATION">/home/oslab/rocket2thinpad/vivado/ip/sram_converter</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@5938e3a5_ARCHIVE_LOCATION">/home/oslab/rocket2thinpad/vivado/ip/sram_converter</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@2567d024_ARCHIVE_LOCATION">/home/oslab/rocket2thinpad/vivado/ip/sram_converter</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@38f81741_ARCHIVE_LOCATION">/home/oslab/rocket2thinpad/vivado/ip/sram_converter</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@7e600373_ARCHIVE_LOCATION">/home/oslab/rocket2thinpad/vivado/ip/sram_converter</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@49d8f154_ARCHIVE_LOCATION">/home/oslab/rocket2thinpad/vivado/ip/sram_converter</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@41e57a5d_ARCHIVE_LOCATION">/home/oslab/rocket2thinpad/vivado/ip/sram_converter</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@70f59de7_ARCHIVE_LOCATION">/home/oslab/rocket2thinpad/vivado/ip/sram_converter</xilinx:tag>
+      </xilinx:tags>
+    </xilinx:coreExtensions>
+    <xilinx:packagingInfo>
+      <xilinx:xilinxVersion>2018.3</xilinx:xilinxVersion>
+      <xilinx:checksum xilinx:scope="busInterfaces" xilinx:value="c11c0ab5"/>
+      <xilinx:checksum xilinx:scope="fileGroups" xilinx:value="41b9ca07"/>
+      <xilinx:checksum xilinx:scope="ports" xilinx:value="ad419fdc"/>
+      <xilinx:checksum xilinx:scope="parameters" xilinx:value="697336c2"/>
+    </xilinx:packagingInfo>
+  </spirit:vendorExtensions>
+</spirit:component>

@@ -1,19 +1,41 @@
 #include <stdint.h>
+#include <stdlib.h>
 
-volatile uint32_t *UART_RX = (uint32_t *)0x60600000;
-volatile uint32_t *UART_TX = (uint32_t *)0x60600004;
-volatile uint32_t *UART_STAT = (uint32_t *)0x60600008;
+const size_t UART_BASE = 0x60600000;
+volatile uint8_t *UART_RBR = (uint8_t *)(UART_BASE + 0x1000);
+volatile uint8_t *UART_THR = (uint8_t *)(UART_BASE + 0x1000);
+volatile uint8_t *UART_DLL = (uint8_t *)(UART_BASE + 0x1000); // LCR(7)=1
+volatile uint8_t *UART_IER = (uint8_t *)(UART_BASE + 0x1004);
+volatile uint8_t *UART_DLM = (uint8_t *)(UART_BASE + 0x1004); // LCR(7)=1
+volatile uint8_t *UART_FCR = (uint8_t *)(UART_BASE + 0x1008);
+volatile uint8_t *UART_LCR = (uint8_t *)(UART_BASE + 0x100C);
+volatile uint8_t *UART_MCR = (uint8_t *)(UART_BASE + 0x1010);
+volatile uint8_t *UART_LSR = (uint8_t *)(UART_BASE + 0x1014);
+
+void init_serial() { 
+  // Enable 8 bytes FIFO
+  *UART_FCR = 0x81;
+  // LCR(7) = 1
+  *UART_LCR = 0x80;
+  // 115200: 50M / 16 / 115200 = 27
+  *UART_DLL = 27;
+  *UART_DLM = 0;
+  // LCR(7) = 0, 8N1
+  *UART_LCR = ~0x80 & 0x03;
+  *UART_MCR = 0;
+  *UART_IER = 0;
+}
 
 void putc(char ch) {
-  while (*UART_STAT & 0x8)
+  while (!(*UART_LSR & 0x40))
     ;
-  *UART_TX = ch;
+  *UART_THR = ch;
 }
 
 uint8_t getc() {
-  while (!(*UART_STAT & 0x1))
+  while (!(*UART_LSR & 0x1))
     ;
-  return (uint8_t)*UART_RX;
+  return *UART_RBR;
 }
 
 uint32_t getlen() {
@@ -49,6 +71,7 @@ void puthex(uint32_t num) {
 }
 
 void bootloader() {
+  init_serial();
   puts("NO BOOT FAIL\r\n");
   uint32_t len = getlen();
   puts("LEN ");
@@ -60,6 +83,8 @@ void bootloader() {
     MEM++;
   }
   puts("BOOT\r\n");
+  void (*boot)() = (void(*)())0x80000000;
+  boot();
 }
 
 void halt(uint32_t epc) {

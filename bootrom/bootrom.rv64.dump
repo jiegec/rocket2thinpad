@@ -9,7 +9,7 @@ Disassembly of section .text.start:
    10004:	f1402573          	csrr	a0,mhartid
    10008:	00050463          	beqz	a0,10010 <_start+0x10>
    1000c:	0580006f          	j	10064 <boot_core>
-   10010:	00458613          	addi	a2,a1,4 # 2000004 <UART_STAT+0x1fefb94>
+   10010:	00458613          	addi	a2,a1,4 # 2000004 <UART_LSR+0x1fefac4>
    10014:	00100693          	li	a3,1
 
 0000000000010018 <interrupt_loop>:
@@ -46,7 +46,7 @@ Disassembly of section .text.hang:
    1007c:	0011011b          	addiw	sp,sp,1
    10080:	00f11113          	slli	sp,sp,0xf
    10084:	00000517          	auipc	a0,0x0
-   10088:	2a450513          	addi	a0,a0,676 # 10328 <bootloader>
+   10088:	32450513          	addi	a0,a0,804 # 103a8 <bootloader>
    1008c:	34151073          	csrw	mepc,a0
    10090:	f1402573          	csrr	a0,mhartid
    10094:	00000597          	auipc	a1,0x0
@@ -57,288 +57,372 @@ Disassembly of section .text.hang:
 
 Disassembly of section .text:
 
-00000000000100a8 <putc>:
-   100a8:	fe010113          	addi	sp,sp,-32 # ffe0 <ROM_BASE-0x20>
-   100ac:	00813c23          	sd	s0,24(sp)
-   100b0:	02010413          	addi	s0,sp,32
-   100b4:	00050793          	mv	a5,a0
-   100b8:	fef407a3          	sb	a5,-17(s0)
-   100bc:	00000013          	nop
-   100c0:	000107b7          	lui	a5,0x10
-   100c4:	4707b783          	ld	a5,1136(a5) # 10470 <UART_STAT>
-   100c8:	0007a783          	lw	a5,0(a5)
-   100cc:	0007879b          	sext.w	a5,a5
-   100d0:	0087f793          	andi	a5,a5,8
-   100d4:	0007879b          	sext.w	a5,a5
-   100d8:	fe0794e3          	bnez	a5,100c0 <putc+0x18>
-   100dc:	000107b7          	lui	a5,0x10
-   100e0:	4687b783          	ld	a5,1128(a5) # 10468 <UART_TX>
-   100e4:	fef44703          	lbu	a4,-17(s0)
-   100e8:	0007071b          	sext.w	a4,a4
-   100ec:	00e7a023          	sw	a4,0(a5)
-   100f0:	00000013          	nop
-   100f4:	01813403          	ld	s0,24(sp)
-   100f8:	02010113          	addi	sp,sp,32
-   100fc:	00008067          	ret
+00000000000100a8 <init_serial>:
+   100a8:	ff010113          	addi	sp,sp,-16 # fff0 <ROM_BASE-0x10>
+   100ac:	00813423          	sd	s0,8(sp)
+   100b0:	01010413          	addi	s0,sp,16
+   100b4:	000107b7          	lui	a5,0x10
+   100b8:	5287b783          	ld	a5,1320(a5) # 10528 <UART_FCR>
+   100bc:	f8100713          	li	a4,-127
+   100c0:	00e78023          	sb	a4,0(a5)
+   100c4:	000107b7          	lui	a5,0x10
+   100c8:	5307b783          	ld	a5,1328(a5) # 10530 <UART_LCR>
+   100cc:	f8000713          	li	a4,-128
+   100d0:	00e78023          	sb	a4,0(a5)
+   100d4:	000107b7          	lui	a5,0x10
+   100d8:	5107b783          	ld	a5,1296(a5) # 10510 <UART_DLL>
+   100dc:	01b00713          	li	a4,27
+   100e0:	00e78023          	sb	a4,0(a5)
+   100e4:	000107b7          	lui	a5,0x10
+   100e8:	5207b783          	ld	a5,1312(a5) # 10520 <UART_DLM>
+   100ec:	00078023          	sb	zero,0(a5)
+   100f0:	000107b7          	lui	a5,0x10
+   100f4:	5307b783          	ld	a5,1328(a5) # 10530 <UART_LCR>
+   100f8:	00300713          	li	a4,3
+   100fc:	00e78023          	sb	a4,0(a5)
+   10100:	000107b7          	lui	a5,0x10
+   10104:	5387b783          	ld	a5,1336(a5) # 10538 <UART_MCR>
+   10108:	00078023          	sb	zero,0(a5)
+   1010c:	000107b7          	lui	a5,0x10
+   10110:	5187b783          	ld	a5,1304(a5) # 10518 <UART_IER>
+   10114:	00078023          	sb	zero,0(a5)
+   10118:	00000013          	nop
+   1011c:	00813403          	ld	s0,8(sp)
+   10120:	01010113          	addi	sp,sp,16
+   10124:	00008067          	ret
 
-0000000000010100 <getc>:
-   10100:	ff010113          	addi	sp,sp,-16
-   10104:	00813423          	sd	s0,8(sp)
-   10108:	01010413          	addi	s0,sp,16
-   1010c:	00000013          	nop
-   10110:	000107b7          	lui	a5,0x10
-   10114:	4707b783          	ld	a5,1136(a5) # 10470 <UART_STAT>
-   10118:	0007a783          	lw	a5,0(a5)
-   1011c:	0007879b          	sext.w	a5,a5
-   10120:	0017f793          	andi	a5,a5,1
-   10124:	0007879b          	sext.w	a5,a5
-   10128:	fe0784e3          	beqz	a5,10110 <getc+0x10>
-   1012c:	000107b7          	lui	a5,0x10
-   10130:	4607b783          	ld	a5,1120(a5) # 10460 <UART_RX>
-   10134:	0007a783          	lw	a5,0(a5)
-   10138:	0007879b          	sext.w	a5,a5
-   1013c:	0ff7f793          	andi	a5,a5,255
-   10140:	00078513          	mv	a0,a5
-   10144:	00813403          	ld	s0,8(sp)
-   10148:	01010113          	addi	sp,sp,16
-   1014c:	00008067          	ret
+0000000000010128 <putc>:
+   10128:	fe010113          	addi	sp,sp,-32
+   1012c:	00813c23          	sd	s0,24(sp)
+   10130:	02010413          	addi	s0,sp,32
+   10134:	00050793          	mv	a5,a0
+   10138:	fef407a3          	sb	a5,-17(s0)
+   1013c:	00000013          	nop
+   10140:	000107b7          	lui	a5,0x10
+   10144:	5407b783          	ld	a5,1344(a5) # 10540 <UART_LSR>
+   10148:	0007c783          	lbu	a5,0(a5)
+   1014c:	0ff7f793          	andi	a5,a5,255
+   10150:	0007879b          	sext.w	a5,a5
+   10154:	0407f793          	andi	a5,a5,64
+   10158:	0007879b          	sext.w	a5,a5
+   1015c:	fe0782e3          	beqz	a5,10140 <putc+0x18>
+   10160:	000107b7          	lui	a5,0x10
+   10164:	5087b783          	ld	a5,1288(a5) # 10508 <UART_THR>
+   10168:	fef44703          	lbu	a4,-17(s0)
+   1016c:	00e78023          	sb	a4,0(a5)
+   10170:	00000013          	nop
+   10174:	01813403          	ld	s0,24(sp)
+   10178:	02010113          	addi	sp,sp,32
+   1017c:	00008067          	ret
 
-0000000000010150 <getlen>:
-   10150:	fe010113          	addi	sp,sp,-32
-   10154:	00113c23          	sd	ra,24(sp)
-   10158:	00813823          	sd	s0,16(sp)
-   1015c:	02010413          	addi	s0,sp,32
-   10160:	fe042623          	sw	zero,-20(s0)
-   10164:	f9dff0ef          	jal	ra,10100 <getc>
-   10168:	00050793          	mv	a5,a0
-   1016c:	0007871b          	sext.w	a4,a5
-   10170:	fec42783          	lw	a5,-20(s0)
-   10174:	00e7e7b3          	or	a5,a5,a4
-   10178:	fef42623          	sw	a5,-20(s0)
-   1017c:	fec42783          	lw	a5,-20(s0)
-   10180:	0087979b          	slliw	a5,a5,0x8
-   10184:	fef42623          	sw	a5,-20(s0)
-   10188:	f79ff0ef          	jal	ra,10100 <getc>
-   1018c:	00050793          	mv	a5,a0
-   10190:	0007871b          	sext.w	a4,a5
-   10194:	fec42783          	lw	a5,-20(s0)
-   10198:	00e7e7b3          	or	a5,a5,a4
-   1019c:	fef42623          	sw	a5,-20(s0)
-   101a0:	fec42783          	lw	a5,-20(s0)
-   101a4:	0087979b          	slliw	a5,a5,0x8
-   101a8:	fef42623          	sw	a5,-20(s0)
-   101ac:	f55ff0ef          	jal	ra,10100 <getc>
-   101b0:	00050793          	mv	a5,a0
-   101b4:	0007871b          	sext.w	a4,a5
-   101b8:	fec42783          	lw	a5,-20(s0)
-   101bc:	00e7e7b3          	or	a5,a5,a4
-   101c0:	fef42623          	sw	a5,-20(s0)
-   101c4:	fec42783          	lw	a5,-20(s0)
-   101c8:	0087979b          	slliw	a5,a5,0x8
-   101cc:	fef42623          	sw	a5,-20(s0)
-   101d0:	f31ff0ef          	jal	ra,10100 <getc>
-   101d4:	00050793          	mv	a5,a0
-   101d8:	0007871b          	sext.w	a4,a5
-   101dc:	fec42783          	lw	a5,-20(s0)
-   101e0:	00e7e7b3          	or	a5,a5,a4
-   101e4:	fef42623          	sw	a5,-20(s0)
-   101e8:	fec42783          	lw	a5,-20(s0)
-   101ec:	00078513          	mv	a0,a5
-   101f0:	01813083          	ld	ra,24(sp)
-   101f4:	01013403          	ld	s0,16(sp)
-   101f8:	02010113          	addi	sp,sp,32
-   101fc:	00008067          	ret
+0000000000010180 <getc>:
+   10180:	ff010113          	addi	sp,sp,-16
+   10184:	00813423          	sd	s0,8(sp)
+   10188:	01010413          	addi	s0,sp,16
+   1018c:	00000013          	nop
+   10190:	000107b7          	lui	a5,0x10
+   10194:	5407b783          	ld	a5,1344(a5) # 10540 <UART_LSR>
+   10198:	0007c783          	lbu	a5,0(a5)
+   1019c:	0ff7f793          	andi	a5,a5,255
+   101a0:	0007879b          	sext.w	a5,a5
+   101a4:	0017f793          	andi	a5,a5,1
+   101a8:	0007879b          	sext.w	a5,a5
+   101ac:	fe0782e3          	beqz	a5,10190 <getc+0x10>
+   101b0:	000107b7          	lui	a5,0x10
+   101b4:	5007b783          	ld	a5,1280(a5) # 10500 <UART_RBR>
+   101b8:	0007c783          	lbu	a5,0(a5)
+   101bc:	0ff7f793          	andi	a5,a5,255
+   101c0:	00078513          	mv	a0,a5
+   101c4:	00813403          	ld	s0,8(sp)
+   101c8:	01010113          	addi	sp,sp,16
+   101cc:	00008067          	ret
 
-0000000000010200 <puts>:
-   10200:	fe010113          	addi	sp,sp,-32
-   10204:	00113c23          	sd	ra,24(sp)
-   10208:	00813823          	sd	s0,16(sp)
-   1020c:	02010413          	addi	s0,sp,32
-   10210:	fea43423          	sd	a0,-24(s0)
-   10214:	01c0006f          	j	10230 <puts+0x30>
-   10218:	fe843783          	ld	a5,-24(s0)
-   1021c:	00178713          	addi	a4,a5,1
-   10220:	fee43423          	sd	a4,-24(s0)
-   10224:	0007c783          	lbu	a5,0(a5)
-   10228:	00078513          	mv	a0,a5
-   1022c:	e7dff0ef          	jal	ra,100a8 <putc>
-   10230:	fe843783          	ld	a5,-24(s0)
-   10234:	0007c783          	lbu	a5,0(a5)
-   10238:	fe0790e3          	bnez	a5,10218 <puts+0x18>
-   1023c:	00000013          	nop
-   10240:	01813083          	ld	ra,24(sp)
-   10244:	01013403          	ld	s0,16(sp)
-   10248:	02010113          	addi	sp,sp,32
-   1024c:	00008067          	ret
+00000000000101d0 <getlen>:
+   101d0:	fe010113          	addi	sp,sp,-32
+   101d4:	00113c23          	sd	ra,24(sp)
+   101d8:	00813823          	sd	s0,16(sp)
+   101dc:	02010413          	addi	s0,sp,32
+   101e0:	fe042623          	sw	zero,-20(s0)
+   101e4:	f9dff0ef          	jal	ra,10180 <getc>
+   101e8:	00050793          	mv	a5,a0
+   101ec:	0007871b          	sext.w	a4,a5
+   101f0:	fec42783          	lw	a5,-20(s0)
+   101f4:	00e7e7b3          	or	a5,a5,a4
+   101f8:	fef42623          	sw	a5,-20(s0)
+   101fc:	fec42783          	lw	a5,-20(s0)
+   10200:	0087979b          	slliw	a5,a5,0x8
+   10204:	fef42623          	sw	a5,-20(s0)
+   10208:	f79ff0ef          	jal	ra,10180 <getc>
+   1020c:	00050793          	mv	a5,a0
+   10210:	0007871b          	sext.w	a4,a5
+   10214:	fec42783          	lw	a5,-20(s0)
+   10218:	00e7e7b3          	or	a5,a5,a4
+   1021c:	fef42623          	sw	a5,-20(s0)
+   10220:	fec42783          	lw	a5,-20(s0)
+   10224:	0087979b          	slliw	a5,a5,0x8
+   10228:	fef42623          	sw	a5,-20(s0)
+   1022c:	f55ff0ef          	jal	ra,10180 <getc>
+   10230:	00050793          	mv	a5,a0
+   10234:	0007871b          	sext.w	a4,a5
+   10238:	fec42783          	lw	a5,-20(s0)
+   1023c:	00e7e7b3          	or	a5,a5,a4
+   10240:	fef42623          	sw	a5,-20(s0)
+   10244:	fec42783          	lw	a5,-20(s0)
+   10248:	0087979b          	slliw	a5,a5,0x8
+   1024c:	fef42623          	sw	a5,-20(s0)
+   10250:	f31ff0ef          	jal	ra,10180 <getc>
+   10254:	00050793          	mv	a5,a0
+   10258:	0007871b          	sext.w	a4,a5
+   1025c:	fec42783          	lw	a5,-20(s0)
+   10260:	00e7e7b3          	or	a5,a5,a4
+   10264:	fef42623          	sw	a5,-20(s0)
+   10268:	fec42783          	lw	a5,-20(s0)
+   1026c:	00078513          	mv	a0,a5
+   10270:	01813083          	ld	ra,24(sp)
+   10274:	01013403          	ld	s0,16(sp)
+   10278:	02010113          	addi	sp,sp,32
+   1027c:	00008067          	ret
 
-0000000000010250 <puthex>:
-   10250:	fd010113          	addi	sp,sp,-48
-   10254:	02113423          	sd	ra,40(sp)
-   10258:	02813023          	sd	s0,32(sp)
-   1025c:	03010413          	addi	s0,sp,48
-   10260:	00050793          	mv	a5,a0
-   10264:	fcf42e23          	sw	a5,-36(s0)
-   10268:	00700793          	li	a5,7
-   1026c:	fef42623          	sw	a5,-20(s0)
-   10270:	0980006f          	j	10308 <puthex+0xb8>
-   10274:	fec42783          	lw	a5,-20(s0)
-   10278:	0027979b          	slliw	a5,a5,0x2
-   1027c:	0007879b          	sext.w	a5,a5
-   10280:	00078713          	mv	a4,a5
-   10284:	fdc42783          	lw	a5,-36(s0)
-   10288:	00e7d7bb          	srlw	a5,a5,a4
-   1028c:	0007879b          	sext.w	a5,a5
-   10290:	0007879b          	sext.w	a5,a5
-   10294:	00f7f793          	andi	a5,a5,15
-   10298:	fef42423          	sw	a5,-24(s0)
-   1029c:	fe842783          	lw	a5,-24(s0)
-   102a0:	0007871b          	sext.w	a4,a5
-   102a4:	00a00793          	li	a5,10
-   102a8:	02e7c063          	blt	a5,a4,102c8 <puthex+0x78>
-   102ac:	fe842783          	lw	a5,-24(s0)
-   102b0:	0ff7f793          	andi	a5,a5,255
-   102b4:	0307879b          	addiw	a5,a5,48
-   102b8:	0ff7f793          	andi	a5,a5,255
-   102bc:	00078513          	mv	a0,a5
-   102c0:	de9ff0ef          	jal	ra,100a8 <putc>
-   102c4:	0380006f          	j	102fc <puthex+0xac>
-   102c8:	fe842783          	lw	a5,-24(s0)
-   102cc:	0007871b          	sext.w	a4,a5
-   102d0:	00f00793          	li	a5,15
-   102d4:	02e7c063          	blt	a5,a4,102f4 <puthex+0xa4>
-   102d8:	fe842783          	lw	a5,-24(s0)
-   102dc:	0ff7f793          	andi	a5,a5,255
-   102e0:	0377879b          	addiw	a5,a5,55
-   102e4:	0ff7f793          	andi	a5,a5,255
-   102e8:	00078513          	mv	a0,a5
-   102ec:	dbdff0ef          	jal	ra,100a8 <putc>
-   102f0:	00c0006f          	j	102fc <puthex+0xac>
-   102f4:	02e00513          	li	a0,46
-   102f8:	db1ff0ef          	jal	ra,100a8 <putc>
-   102fc:	fec42783          	lw	a5,-20(s0)
-   10300:	fff7879b          	addiw	a5,a5,-1
-   10304:	fef42623          	sw	a5,-20(s0)
-   10308:	fec42783          	lw	a5,-20(s0)
+0000000000010280 <puts>:
+   10280:	fe010113          	addi	sp,sp,-32
+   10284:	00113c23          	sd	ra,24(sp)
+   10288:	00813823          	sd	s0,16(sp)
+   1028c:	02010413          	addi	s0,sp,32
+   10290:	fea43423          	sd	a0,-24(s0)
+   10294:	01c0006f          	j	102b0 <puts+0x30>
+   10298:	fe843783          	ld	a5,-24(s0)
+   1029c:	00178713          	addi	a4,a5,1
+   102a0:	fee43423          	sd	a4,-24(s0)
+   102a4:	0007c783          	lbu	a5,0(a5)
+   102a8:	00078513          	mv	a0,a5
+   102ac:	e7dff0ef          	jal	ra,10128 <putc>
+   102b0:	fe843783          	ld	a5,-24(s0)
+   102b4:	0007c783          	lbu	a5,0(a5)
+   102b8:	fe0790e3          	bnez	a5,10298 <puts+0x18>
+   102bc:	00000013          	nop
+   102c0:	01813083          	ld	ra,24(sp)
+   102c4:	01013403          	ld	s0,16(sp)
+   102c8:	02010113          	addi	sp,sp,32
+   102cc:	00008067          	ret
+
+00000000000102d0 <puthex>:
+   102d0:	fd010113          	addi	sp,sp,-48
+   102d4:	02113423          	sd	ra,40(sp)
+   102d8:	02813023          	sd	s0,32(sp)
+   102dc:	03010413          	addi	s0,sp,48
+   102e0:	00050793          	mv	a5,a0
+   102e4:	fcf42e23          	sw	a5,-36(s0)
+   102e8:	00700793          	li	a5,7
+   102ec:	fef42623          	sw	a5,-20(s0)
+   102f0:	0980006f          	j	10388 <puthex+0xb8>
+   102f4:	fec42783          	lw	a5,-20(s0)
+   102f8:	0027979b          	slliw	a5,a5,0x2
+   102fc:	0007879b          	sext.w	a5,a5
+   10300:	00078713          	mv	a4,a5
+   10304:	fdc42783          	lw	a5,-36(s0)
+   10308:	00e7d7bb          	srlw	a5,a5,a4
    1030c:	0007879b          	sext.w	a5,a5
-   10310:	f607d2e3          	bgez	a5,10274 <puthex+0x24>
-   10314:	00000013          	nop
-   10318:	02813083          	ld	ra,40(sp)
-   1031c:	02013403          	ld	s0,32(sp)
-   10320:	03010113          	addi	sp,sp,48
-   10324:	00008067          	ret
+   10310:	0007879b          	sext.w	a5,a5
+   10314:	00f7f793          	andi	a5,a5,15
+   10318:	fef42423          	sw	a5,-24(s0)
+   1031c:	fe842783          	lw	a5,-24(s0)
+   10320:	0007871b          	sext.w	a4,a5
+   10324:	00a00793          	li	a5,10
+   10328:	02e7c063          	blt	a5,a4,10348 <puthex+0x78>
+   1032c:	fe842783          	lw	a5,-24(s0)
+   10330:	0ff7f793          	andi	a5,a5,255
+   10334:	0307879b          	addiw	a5,a5,48
+   10338:	0ff7f793          	andi	a5,a5,255
+   1033c:	00078513          	mv	a0,a5
+   10340:	de9ff0ef          	jal	ra,10128 <putc>
+   10344:	0380006f          	j	1037c <puthex+0xac>
+   10348:	fe842783          	lw	a5,-24(s0)
+   1034c:	0007871b          	sext.w	a4,a5
+   10350:	00f00793          	li	a5,15
+   10354:	02e7c063          	blt	a5,a4,10374 <puthex+0xa4>
+   10358:	fe842783          	lw	a5,-24(s0)
+   1035c:	0ff7f793          	andi	a5,a5,255
+   10360:	0377879b          	addiw	a5,a5,55
+   10364:	0ff7f793          	andi	a5,a5,255
+   10368:	00078513          	mv	a0,a5
+   1036c:	dbdff0ef          	jal	ra,10128 <putc>
+   10370:	00c0006f          	j	1037c <puthex+0xac>
+   10374:	02e00513          	li	a0,46
+   10378:	db1ff0ef          	jal	ra,10128 <putc>
+   1037c:	fec42783          	lw	a5,-20(s0)
+   10380:	fff7879b          	addiw	a5,a5,-1
+   10384:	fef42623          	sw	a5,-20(s0)
+   10388:	fec42783          	lw	a5,-20(s0)
+   1038c:	0007879b          	sext.w	a5,a5
+   10390:	f607d2e3          	bgez	a5,102f4 <puthex+0x24>
+   10394:	00000013          	nop
+   10398:	02813083          	ld	ra,40(sp)
+   1039c:	02013403          	ld	s0,32(sp)
+   103a0:	03010113          	addi	sp,sp,48
+   103a4:	00008067          	ret
 
-0000000000010328 <bootloader>:
-   10328:	fe010113          	addi	sp,sp,-32
-   1032c:	00113c23          	sd	ra,24(sp)
-   10330:	00813823          	sd	s0,16(sp)
-   10334:	02010413          	addi	s0,sp,32
-   10338:	000107b7          	lui	a5,0x10
-   1033c:	43078513          	addi	a0,a5,1072 # 10430 <halt+0x48>
-   10340:	ec1ff0ef          	jal	ra,10200 <puts>
-   10344:	e0dff0ef          	jal	ra,10150 <getlen>
-   10348:	00050793          	mv	a5,a0
-   1034c:	fef42023          	sw	a5,-32(s0)
-   10350:	000107b7          	lui	a5,0x10
-   10354:	44078513          	addi	a0,a5,1088 # 10440 <halt+0x58>
-   10358:	ea9ff0ef          	jal	ra,10200 <puts>
-   1035c:	fe042783          	lw	a5,-32(s0)
-   10360:	00078513          	mv	a0,a5
-   10364:	eedff0ef          	jal	ra,10250 <puthex>
-   10368:	000107b7          	lui	a5,0x10
-   1036c:	44878513          	addi	a0,a5,1096 # 10448 <halt+0x60>
-   10370:	e91ff0ef          	jal	ra,10200 <puts>
-   10374:	00100793          	li	a5,1
-   10378:	01f79793          	slli	a5,a5,0x1f
-   1037c:	fef43423          	sd	a5,-24(s0)
-   10380:	fe042223          	sw	zero,-28(s0)
-   10384:	0300006f          	j	103b4 <bootloader+0x8c>
-   10388:	d79ff0ef          	jal	ra,10100 <getc>
-   1038c:	00050793          	mv	a5,a0
-   10390:	00078713          	mv	a4,a5
-   10394:	fe843783          	ld	a5,-24(s0)
-   10398:	00e78023          	sb	a4,0(a5)
-   1039c:	fe843783          	ld	a5,-24(s0)
-   103a0:	00178793          	addi	a5,a5,1
-   103a4:	fef43423          	sd	a5,-24(s0)
-   103a8:	fe442783          	lw	a5,-28(s0)
-   103ac:	0017879b          	addiw	a5,a5,1
-   103b0:	fef42223          	sw	a5,-28(s0)
-   103b4:	fe442703          	lw	a4,-28(s0)
-   103b8:	fe042783          	lw	a5,-32(s0)
-   103bc:	0007071b          	sext.w	a4,a4
-   103c0:	0007879b          	sext.w	a5,a5
-   103c4:	fcf762e3          	bltu	a4,a5,10388 <bootloader+0x60>
-   103c8:	000107b7          	lui	a5,0x10
-   103cc:	45078513          	addi	a0,a5,1104 # 10450 <halt+0x68>
-   103d0:	e31ff0ef          	jal	ra,10200 <puts>
-   103d4:	00000013          	nop
-   103d8:	01813083          	ld	ra,24(sp)
-   103dc:	01013403          	ld	s0,16(sp)
-   103e0:	02010113          	addi	sp,sp,32
-   103e4:	00008067          	ret
+00000000000103a8 <bootloader>:
+   103a8:	fd010113          	addi	sp,sp,-48
+   103ac:	02113423          	sd	ra,40(sp)
+   103b0:	02813023          	sd	s0,32(sp)
+   103b4:	03010413          	addi	s0,sp,48
+   103b8:	cf1ff0ef          	jal	ra,100a8 <init_serial>
+   103bc:	000107b7          	lui	a5,0x10
+   103c0:	4d078513          	addi	a0,a5,1232 # 104d0 <UART_BASE+0x8>
+   103c4:	ebdff0ef          	jal	ra,10280 <puts>
+   103c8:	e09ff0ef          	jal	ra,101d0 <getlen>
+   103cc:	00050793          	mv	a5,a0
+   103d0:	fef42023          	sw	a5,-32(s0)
+   103d4:	000107b7          	lui	a5,0x10
+   103d8:	4e078513          	addi	a0,a5,1248 # 104e0 <UART_BASE+0x18>
+   103dc:	ea5ff0ef          	jal	ra,10280 <puts>
+   103e0:	fe042783          	lw	a5,-32(s0)
+   103e4:	00078513          	mv	a0,a5
+   103e8:	ee9ff0ef          	jal	ra,102d0 <puthex>
+   103ec:	000107b7          	lui	a5,0x10
+   103f0:	4e878513          	addi	a0,a5,1256 # 104e8 <UART_BASE+0x20>
+   103f4:	e8dff0ef          	jal	ra,10280 <puts>
+   103f8:	00100793          	li	a5,1
+   103fc:	01f79793          	slli	a5,a5,0x1f
+   10400:	fef43423          	sd	a5,-24(s0)
+   10404:	fe042223          	sw	zero,-28(s0)
+   10408:	0300006f          	j	10438 <bootloader+0x90>
+   1040c:	d75ff0ef          	jal	ra,10180 <getc>
+   10410:	00050793          	mv	a5,a0
+   10414:	00078713          	mv	a4,a5
+   10418:	fe843783          	ld	a5,-24(s0)
+   1041c:	00e78023          	sb	a4,0(a5)
+   10420:	fe843783          	ld	a5,-24(s0)
+   10424:	00178793          	addi	a5,a5,1
+   10428:	fef43423          	sd	a5,-24(s0)
+   1042c:	fe442783          	lw	a5,-28(s0)
+   10430:	0017879b          	addiw	a5,a5,1
+   10434:	fef42223          	sw	a5,-28(s0)
+   10438:	fe442703          	lw	a4,-28(s0)
+   1043c:	fe042783          	lw	a5,-32(s0)
+   10440:	0007071b          	sext.w	a4,a4
+   10444:	0007879b          	sext.w	a5,a5
+   10448:	fcf762e3          	bltu	a4,a5,1040c <bootloader+0x64>
+   1044c:	000107b7          	lui	a5,0x10
+   10450:	4f078513          	addi	a0,a5,1264 # 104f0 <UART_BASE+0x28>
+   10454:	e2dff0ef          	jal	ra,10280 <puts>
+   10458:	00100793          	li	a5,1
+   1045c:	01f79793          	slli	a5,a5,0x1f
+   10460:	fcf43c23          	sd	a5,-40(s0)
+   10464:	fd843783          	ld	a5,-40(s0)
+   10468:	000780e7          	jalr	a5
+   1046c:	00000013          	nop
+   10470:	02813083          	ld	ra,40(sp)
+   10474:	02013403          	ld	s0,32(sp)
+   10478:	03010113          	addi	sp,sp,48
+   1047c:	00008067          	ret
 
-00000000000103e8 <halt>:
-   103e8:	fe010113          	addi	sp,sp,-32
-   103ec:	00113c23          	sd	ra,24(sp)
-   103f0:	00813823          	sd	s0,16(sp)
-   103f4:	02010413          	addi	s0,sp,32
-   103f8:	00050793          	mv	a5,a0
-   103fc:	fef42623          	sw	a5,-20(s0)
-   10400:	000107b7          	lui	a5,0x10
-   10404:	45878513          	addi	a0,a5,1112 # 10458 <halt+0x70>
-   10408:	df9ff0ef          	jal	ra,10200 <puts>
-   1040c:	fec42783          	lw	a5,-20(s0)
-   10410:	00078513          	mv	a0,a5
-   10414:	e3dff0ef          	jal	ra,10250 <puthex>
-   10418:	00000013          	nop
-   1041c:	01813083          	ld	ra,24(sp)
-   10420:	01013403          	ld	s0,16(sp)
-   10424:	02010113          	addi	sp,sp,32
-   10428:	00008067          	ret
+0000000000010480 <halt>:
+   10480:	fe010113          	addi	sp,sp,-32
+   10484:	00113c23          	sd	ra,24(sp)
+   10488:	00813823          	sd	s0,16(sp)
+   1048c:	02010413          	addi	s0,sp,32
+   10490:	00050793          	mv	a5,a0
+   10494:	fef42623          	sw	a5,-20(s0)
+   10498:	000107b7          	lui	a5,0x10
+   1049c:	4f878513          	addi	a0,a5,1272 # 104f8 <UART_BASE+0x30>
+   104a0:	de1ff0ef          	jal	ra,10280 <puts>
+   104a4:	fec42783          	lw	a5,-20(s0)
+   104a8:	00078513          	mv	a0,a5
+   104ac:	e25ff0ef          	jal	ra,102d0 <puthex>
+   104b0:	00000013          	nop
+   104b4:	01813083          	ld	ra,24(sp)
+   104b8:	01013403          	ld	s0,16(sp)
+   104bc:	02010113          	addi	sp,sp,32
+   104c0:	00008067          	ret
+
+Disassembly of section .srodata:
+
+00000000000104c8 <UART_BASE>:
+   104c8:	0000                	unimp
+   104ca:	6060                	ld	s0,192(s0)
+   104cc:	0000                	unimp
+	...
 
 Disassembly of section .rodata:
 
-0000000000010430 <.rodata>:
-   10430:	4f4e                	lw	t5,208(sp)
-   10432:	4220                	lw	s0,64(a2)
-   10434:	20544f4f          	fnmadd.s	ft10,fs0,ft5,ft4,rmm
-   10438:	4146                	lw	sp,80(sp)
-   1043a:	4c49                	li	s8,18
-   1043c:	0a0d                	addi	s4,s4,3
-   1043e:	0000                	unimp
-   10440:	454c                	lw	a1,12(a0)
-   10442:	204e                	fld	ft0,208(sp)
-   10444:	0000                	unimp
-   10446:	0000                	unimp
-   10448:	0a0d                	addi	s4,s4,3
-   1044a:	0000                	unimp
-   1044c:	0000                	unimp
-   1044e:	0000                	unimp
-   10450:	4f42                	lw	t5,16(sp)
-   10452:	0a0d544f          	fnmadd.d	fs0,fs10,ft0,ft1,unknown
-   10456:	0000                	unimp
-   10458:	4148                	lw	a0,4(a0)
-   1045a:	544c                	lw	a1,44(s0)
-   1045c:	0020                	addi	s0,sp,8
+00000000000104d0 <.rodata>:
+   104d0:	4f4e                	lw	t5,208(sp)
+   104d2:	4220                	lw	s0,64(a2)
+   104d4:	20544f4f          	fnmadd.s	ft10,fs0,ft5,ft4,rmm
+   104d8:	4146                	lw	sp,80(sp)
+   104da:	4c49                	li	s8,18
+   104dc:	0a0d                	addi	s4,s4,3
+   104de:	0000                	unimp
+   104e0:	454c                	lw	a1,12(a0)
+   104e2:	204e                	fld	ft0,208(sp)
+   104e4:	0000                	unimp
+   104e6:	0000                	unimp
+   104e8:	0a0d                	addi	s4,s4,3
+   104ea:	0000                	unimp
+   104ec:	0000                	unimp
+   104ee:	0000                	unimp
+   104f0:	4f42                	lw	t5,16(sp)
+   104f2:	0a0d544f          	fnmadd.d	fs0,fs10,ft0,ft1,unknown
+   104f6:	0000                	unimp
+   104f8:	4148                	lw	a0,4(a0)
+   104fa:	544c                	lw	a1,44(s0)
+   104fc:	0020                	addi	s0,sp,8
 
 Disassembly of section .sdata:
 
-0000000000010460 <UART_RX>:
-   10460:	0000                	unimp
-   10462:	6060                	ld	s0,192(s0)
-   10464:	0000                	unimp
+0000000000010500 <UART_RBR>:
+   10500:	1000                	addi	s0,sp,32
+   10502:	6060                	ld	s0,192(s0)
+   10504:	0000                	unimp
 	...
 
-0000000000010468 <UART_TX>:
-   10468:	0004                	0x4
-   1046a:	6060                	ld	s0,192(s0)
-   1046c:	0000                	unimp
+0000000000010508 <UART_THR>:
+   10508:	1000                	addi	s0,sp,32
+   1050a:	6060                	ld	s0,192(s0)
+   1050c:	0000                	unimp
 	...
 
-0000000000010470 <UART_STAT>:
-   10470:	0008                	0x8
-   10472:	6060                	ld	s0,192(s0)
-   10474:	0000                	unimp
+0000000000010510 <UART_DLL>:
+   10510:	1000                	addi	s0,sp,32
+   10512:	6060                	ld	s0,192(s0)
+   10514:	0000                	unimp
+	...
+
+0000000000010518 <UART_IER>:
+   10518:	1004                	addi	s1,sp,32
+   1051a:	6060                	ld	s0,192(s0)
+   1051c:	0000                	unimp
+	...
+
+0000000000010520 <UART_DLM>:
+   10520:	1004                	addi	s1,sp,32
+   10522:	6060                	ld	s0,192(s0)
+   10524:	0000                	unimp
+	...
+
+0000000000010528 <UART_FCR>:
+   10528:	1008                	addi	a0,sp,32
+   1052a:	6060                	ld	s0,192(s0)
+   1052c:	0000                	unimp
+	...
+
+0000000000010530 <UART_LCR>:
+   10530:	100c                	addi	a1,sp,32
+   10532:	6060                	ld	s0,192(s0)
+   10534:	0000                	unimp
+	...
+
+0000000000010538 <UART_MCR>:
+   10538:	1010                	addi	a2,sp,32
+   1053a:	6060                	ld	s0,192(s0)
+   1053c:	0000                	unimp
+	...
+
+0000000000010540 <UART_LSR>:
+   10540:	1014                	addi	a3,sp,32
+   10542:	6060                	ld	s0,192(s0)
+   10544:	0000                	unimp
 	...
 
 Disassembly of section .comment:
