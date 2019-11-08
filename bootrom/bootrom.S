@@ -1,4 +1,4 @@
-#define DRAM_TOP 0x80008000
+#define DRAM_TOP 0x80800000
 
 .section .text.start, "ax", @progbits
 .globl _start

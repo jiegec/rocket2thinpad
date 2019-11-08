@@ -42,7 +42,7 @@ Disassembly of section .text.hang:
 
 00010074 <boot_core_hart0>:
    10074:	0005a023          	sw	zero,0(a1)
-   10078:	80008137          	lui	sp,0x80008
+   10078:	80800137          	lui	sp,0x80800
    1007c:	00000517          	auipc	a0,0x0
    10080:	2f450513          	addi	a0,a0,756 # 10370 <bootloader>
    10084:	34151073          	csrw	mepc,a0
@@ -56,7 +56,7 @@ Disassembly of section .text.hang:
 Disassembly of section .text:
 
 000100a0 <init_serial>:
-   100a0:	ff010113          	addi	sp,sp,-16 # 80007ff0 <UART_LSR+0x7fff7b34>
+   100a0:	ff010113          	addi	sp,sp,-16 # 807ffff0 <UART_LSR+0x807efb34>
    100a4:	00812623          	sw	s0,12(sp)
    100a8:	01010413          	addi	s0,sp,16
    100ac:	000107b7          	lui	a5,0x10
