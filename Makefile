@@ -7,7 +7,6 @@ CONFIG ?= ThinpadFPGAConfig
 BASE_DIR = $(abspath .)
 BUILD = $(BASE_DIR)/build
 SRC = $(BASE_DIR)/src
-ROCKETCHIP_STAMP = $(BASE_DIR)/lib/rocketchip.stamp
 
 SHELL := /bin/bash
 
@@ -27,13 +26,7 @@ CHISEL_ARGS := $(BUILD)
 LOOKUP_SCALA_SRCS = $(shell find $(1)/. -iname "*.scala" 2> /dev/null)
 BOOTROM := $(shell find bootrom -iname "*.img" 2> /dev/null)
 
-$(ROCKETCHIP_STAMP): $(call LOOKUP_SCALA_SRCS, $(ROCKET_DIR)) $(FIRRTL_JAR)
-	cd $(ROCKET_DIR) && $(SBT) pack
-	mkdir -p $(BASE_DIR)/lib
-	cp $(ROCKET_DIR)/target/pack/lib/* $(BASE_DIR)/lib
-	touch $(ROCKETCHIP_STAMP)
-
-$(BUILD)/$(TOP_MODULE_PROJECT).$(CONFIG).fir: $(ROCKETCHIP_STAMP) $(call LOOKUP_SCALA_SRCS,$(SRC)) $(BOOTROM)
+$(BUILD)/$(TOP_MODULE_PROJECT).$(CONFIG).fir: $(call LOOKUP_SCALA_SRCS,$(SRC)) $(BOOTROM)
 	mkdir -p $(@D)
 	$(SBT) "runMain freechips.rocketchip.system.Generator $(CHISEL_ARGS) $(TOP_MODULE_PROJECT) $(TOP_MODULE) $(TOP_MODULE_PROJECT) $(CONFIG)"
 
