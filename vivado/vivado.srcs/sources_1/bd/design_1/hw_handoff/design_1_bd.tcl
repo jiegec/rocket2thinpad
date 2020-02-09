@@ -389,10 +389,10 @@ set_property HDL_ATTRIBUTE.DEBUG {true} [get_bd_intf_nets rocketchip_wrapper_0_M
   create_bd_addr_seg -range 0x00010000 -offset 0x60600000 [get_bd_addr_spaces jtag_axi_0/Data] [get_bd_addr_segs axi_uart16550_0/S_AXI/Reg] SEG_axi_uart16550_0_Reg
   create_bd_addr_seg -range 0x00008000 -offset 0x80800000 [get_bd_addr_spaces rocketchip_wrapper_0/M_AXI] [get_bd_addr_segs axi_bram_ctrl_0/S_AXI/Mem0] SEG_axi_bram_ctrl_0_Mem0
   create_bd_addr_seg -range 0x00008000 -offset 0x80800000 [get_bd_addr_spaces rocketchip_wrapper_0/M_AXI_MMIO] [get_bd_addr_segs axi_bram_ctrl_0/S_AXI/Mem0] SEG_axi_bram_ctrl_0_Mem0
-  create_bd_addr_seg -range 0x00400000 -offset 0x80000000 [get_bd_addr_spaces rocketchip_wrapper_0/M_AXI] [get_bd_addr_segs axi_emc_base/S_AXI_MEM/Mem0] SEG_axi_emc_0_Mem0
-  create_bd_addr_seg -range 0x00400000 -offset 0x80000000 [get_bd_addr_spaces rocketchip_wrapper_0/M_AXI_MMIO] [get_bd_addr_segs axi_emc_base/S_AXI_MEM/Mem0] SEG_axi_emc_0_Mem0
-  create_bd_addr_seg -range 0x00400000 -offset 0x80400000 [get_bd_addr_spaces rocketchip_wrapper_0/M_AXI] [get_bd_addr_segs axi_emc_ext/S_AXI_MEM/Mem0] SEG_axi_emc_0_Mem01
-  create_bd_addr_seg -range 0x00400000 -offset 0x80400000 [get_bd_addr_spaces rocketchip_wrapper_0/M_AXI_MMIO] [get_bd_addr_segs axi_emc_ext/S_AXI_MEM/Mem0] SEG_axi_emc_0_Mem03
+  create_bd_addr_seg -range 0x00400000 -offset 0x80000000 [get_bd_addr_spaces rocketchip_wrapper_0/M_AXI] [get_bd_addr_segs axi_emc_base/S_AXI_MEM/Mem0] SEG_axi_emc_base_Mem0
+  create_bd_addr_seg -range 0x00400000 -offset 0x80000000 [get_bd_addr_spaces rocketchip_wrapper_0/M_AXI_MMIO] [get_bd_addr_segs axi_emc_base/S_AXI_MEM/Mem0] SEG_axi_emc_base_Mem0
+  create_bd_addr_seg -range 0x00400000 -offset 0x80400000 [get_bd_addr_spaces rocketchip_wrapper_0/M_AXI] [get_bd_addr_segs axi_emc_ext/S_AXI_MEM/Mem0] SEG_axi_emc_ext_Mem0
+  create_bd_addr_seg -range 0x00400000 -offset 0x80400000 [get_bd_addr_spaces rocketchip_wrapper_0/M_AXI_MMIO] [get_bd_addr_segs axi_emc_ext/S_AXI_MEM/Mem0] SEG_axi_emc_ext_Mem0
   create_bd_addr_seg -range 0x00010000 -offset 0x60600000 [get_bd_addr_spaces rocketchip_wrapper_0/M_AXI] [get_bd_addr_segs axi_uart16550_0/S_AXI/Reg] SEG_axi_uart16550_0_Reg
   create_bd_addr_seg -range 0x00010000 -offset 0x60600000 [get_bd_addr_spaces rocketchip_wrapper_0/M_AXI_MMIO] [get_bd_addr_segs axi_uart16550_0/S_AXI/Reg] SEG_axi_uart16550_0_Reg
 
