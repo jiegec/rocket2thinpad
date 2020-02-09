@@ -10,7 +10,7 @@ resolvers ++= Seq(
 )
 
 val defaultVersions = Map(
-  "rocketchip" -> "1.2.0",
+  "rocketchip" -> "1.2.2",
   )
 
 libraryDependencies ++= Seq("rocketchip").map {

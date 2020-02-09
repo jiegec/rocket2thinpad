@@ -25,19 +25,22 @@ class RocketChip(implicit val p: Parameters) extends Module {
   io.mmio_axi4 <> target.mmio_axi4.head
 
   target.interrupts := io.interrupts
-  target.debug.clockeddmi.map { clockeddmi =>
-    clockeddmi.dmiReset := reset
-    clockeddmi.dmiClock := clock
-    clockeddmi.dmi.req.valid := false.B
-    clockeddmi.dmi.req.bits.op := 0.U
-    clockeddmi.dmi.req.bits.addr := 0.U
-    clockeddmi.dmi.req.bits.data := 0.U
-    clockeddmi.dmi.resp.ready := false.B
-  }
+  target.debug.map( debug => {
+    debug.clockeddmi.map { clockeddmi =>
+      clockeddmi.dmiReset := reset
+      clockeddmi.dmiClock := clock
+      clockeddmi.dmi.req.valid := false.B
+      clockeddmi.dmi.req.bits.op := 0.U
+      clockeddmi.dmi.req.bits.addr := 0.U
+      clockeddmi.dmi.req.bits.data := 0.U
+      clockeddmi.dmi.resp.ready := false.B
+    }
+  })
   target.dontTouchPorts()
 }
 
-class RocketTop(implicit p: Parameters) extends RocketSubsystem
+class RocketTop(implicit p: Parameters)
+    extends RocketSubsystem
     with HasHierarchicalBusTopology
     with HasPeripheryBootROM
     with HasAsyncExtInterrupts
@@ -46,10 +49,12 @@ class RocketTop(implicit p: Parameters) extends RocketSubsystem
   override lazy val module = new RocketTopModule(this)
 }
 
-class RocketTopModule(outer: RocketTop) extends RocketSubsystemModuleImp(outer)
+class RocketTopModule(outer: RocketTop)
+    extends RocketSubsystemModuleImp(outer)
     with HasRTCModuleImp
     with HasExtInterruptsModuleImp
     with HasPeripheryBootROMModuleImp
-    with CanHaveMasterAXI4MemPortModuleImp
-    with CanHaveMasterAXI4MMIOPortModuleImp
-    with DontTouch
+    with DontTouch {
+  lazy val mem_axi4 = outer.mem_axi4
+  lazy val mmio_axi4 = outer.mmio_axi4
+}
