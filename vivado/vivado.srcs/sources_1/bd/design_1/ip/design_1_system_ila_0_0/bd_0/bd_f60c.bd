@@ -1,7 +1,7 @@
 {
   "design": {
     "design_info": {
-      "boundary_crc": "0x15B560104FF73B1F",
+      "boundary_crc": "0x5127EF749F77EE7B",
       "design_src": "SBD",
       "device": "xc7a100tfgg676-2L",
       "name": "bd_f60c",
@@ -50,7 +50,7 @@
             "value_src": "default"
           },
           "DATA_WIDTH": {
-            "value": "64",
+            "value": "32",
             "value_src": "default"
           },
           "FREQ_HZ": {
@@ -180,7 +180,7 @@
             "value_src": "default"
           },
           "DATA_WIDTH": {
-            "value": "64",
+            "value": "32",
             "value_src": "default"
           },
           "FREQ_HZ": {
@@ -465,7 +465,7 @@
             "value": "0"
           },
           "C_PROBE24_WIDTH": {
-            "value": "64"
+            "value": "32"
           },
           "C_PROBE25_TYPE": {
             "value": "0"
@@ -483,13 +483,13 @@
             "value": "0"
           },
           "C_PROBE27_WIDTH": {
-            "value": "64"
+            "value": "32"
           },
           "C_PROBE28_TYPE": {
             "value": "0"
           },
           "C_PROBE28_WIDTH": {
-            "value": "8"
+            "value": "4"
           },
           "C_PROBE29_TYPE": {
             "value": "0"
@@ -687,7 +687,7 @@
             "value": "0"
           },
           "C_PROBE58_WIDTH": {
-            "value": "64"
+            "value": "32"
           },
           "C_PROBE59_TYPE": {
             "value": "0"
@@ -711,13 +711,13 @@
             "value": "0"
           },
           "C_PROBE61_WIDTH": {
-            "value": "64"
+            "value": "32"
           },
           "C_PROBE62_TYPE": {
             "value": "0"
           },
           "C_PROBE62_WIDTH": {
-            "value": "8"
+            "value": "4"
           },
           "C_PROBE63_TYPE": {
             "value": "0"
@@ -828,7 +828,7 @@
             "value": "1"
           },
           "C_SLOT_0_AXI_DATA_WIDTH": {
-            "value": "64"
+            "value": "32"
           },
           "C_SLOT_0_AXI_ID_WIDTH": {
             "value": "5"
@@ -915,7 +915,7 @@
             "value": "1"
           },
           "C_SLOT_1_AXI_DATA_WIDTH": {
-            "value": "64"
+            "value": "32"
           },
           "C_SLOT_1_AXI_ID_WIDTH": {
             "value": "5"

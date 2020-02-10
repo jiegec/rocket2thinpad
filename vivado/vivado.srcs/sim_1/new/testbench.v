@@ -34,9 +34,17 @@ module testbench(
         rst = 1'b0;
     end
 
+    wire [31:0] base_ram_data_tri_io;
+    wire [31:0] ext_ram_data_tri_io;
+
+    assign base_ram_data_tri_io = 0;
+    assign ext_ram_data_tri_io = 0;
+
     design_1_wrapper dut (
         .clk_50M(clk),
         .reset(rst),
-        .uart_rxd(0)
+        .uart_rxd(0),
+        .base_ram_data_tri_io(base_ram_data_tri_io),
+        .ext_ram_data_tri_io(ext_ram_data_tri_io)
     );
 endmodule
