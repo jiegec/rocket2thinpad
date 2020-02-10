@@ -30,12 +30,11 @@ class WithIDBits(n: Int)
       case ExtBus => up(ExtBus, site).map(x => x.copy(idBits = n))
     })
 
-class DefaultConfig
-    extends Config(
-      new WithJtagDTM ++
-        new WithRV32 ++
-        new WithIDBits(5) ++ new WithBootROM ++ new freechips.rocketchip.system.DefaultSmallConfig
-    )
-
 class ThinpadFPGAConfig
-    extends Config(new WithoutTLMonitors ++ new DefaultConfig)
+    extends Config(new WithoutTLMonitors ++
+    new WithJtagDTM ++
+    new WithRV32 ++
+    new WithIDBits(5) ++
+    new WithBootROM ++
+    new WithNSmallCores(1) ++
+    new freechips.rocketchip.system.DefaultConfig)
