@@ -37,4 +37,4 @@ class ThinpadFPGAConfig
     new WithIDBits(5) ++
     new WithBootROM ++
     new WithNSmallCores(1) ++
-    new freechips.rocketchip.system.DefaultConfig)
+    new freechips.rocketchip.system.BaseConfig)
