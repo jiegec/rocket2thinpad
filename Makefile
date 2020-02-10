@@ -25,7 +25,8 @@ $(BUILD)/$(TOP_MODULE_PROJECT).$(CONFIG).fir: $(call LOOKUP_SCALA_SRCS,$(SRC)) $
 $(BUILD)/$(TOP_MODULE_PROJECT).$(CONFIG).v: $(BUILD)/$(TOP_MODULE_PROJECT).$(CONFIG).fir
 	$(SBT) "runMain firrtl.stage.FirrtlMain -i $< -o $@ -X verilog"
 	cp $@ $@.bak
-	sed 's/wire \[..:0\] coreMonitorBundle/(* mark_debug="true" *) \0/g' $@.bak > $@
+	cp prologue.v $@
+	sed 's/wire \[..:0\] coreMonitorBundle/(* mark_debug="true" *) \0/g' $@.bak >> $@
 
 clean:
 	rm -rf build/*
