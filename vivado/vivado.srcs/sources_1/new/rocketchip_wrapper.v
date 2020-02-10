@@ -131,8 +131,8 @@ module rocketchip_wrapper(
 
     input M_AXI_wready;
     output M_AXI_wvalid;
-    output [63:0] M_AXI_wdata;
-    output [7:0] M_AXI_wstrb;
+    output [31:0] M_AXI_wdata;
+    output [3:0] M_AXI_wstrb;
     output M_AXI_wlast;
 
     output M_AXI_bready;
@@ -155,7 +155,7 @@ module rocketchip_wrapper(
     output M_AXI_rready;
     input M_AXI_rvalid;
     input [4:0] M_AXI_rid;
-    input [63:0] M_AXI_rdata;
+    input [31:0] M_AXI_rdata;
     input [1:0] M_AXI_rresp;
     input M_AXI_rlast;
 
@@ -174,8 +174,8 @@ module rocketchip_wrapper(
 
     input M_AXI_MMIO_wready;
     output M_AXI_MMIO_wvalid;
-    output [63:0] M_AXI_MMIO_wdata;
-    output [7:0] M_AXI_MMIO_wstrb;
+    output [31:0] M_AXI_MMIO_wdata;
+    output [3:0] M_AXI_MMIO_wstrb;
     output M_AXI_MMIO_wlast;
 
     output M_AXI_MMIO_bready;
@@ -198,7 +198,7 @@ module rocketchip_wrapper(
     output M_AXI_MMIO_rready;
     input M_AXI_MMIO_rvalid;
     input [4:0] M_AXI_MMIO_rid;
-    input [63:0] M_AXI_MMIO_rdata;
+    input [31:0] M_AXI_MMIO_rdata;
     input [1:0] M_AXI_MMIO_rresp;
     input M_AXI_MMIO_rlast;
 
