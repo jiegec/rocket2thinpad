@@ -33,6 +33,7 @@ class WithIDBits(n: Int)
 class DefaultConfig
     extends Config(
       new WithJtagDTM ++
+        new WithRV32 ++
         new WithIDBits(5) ++ new WithBootROM ++ new freechips.rocketchip.system.DefaultSmallConfig
     )
 
