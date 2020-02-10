@@ -22,7 +22,7 @@ dump: $(bootrom_dump)
 	$(GCC) $(CFLAGS_RV64) $(CFLAGS) -Tlinker.ld $^ -nostdlib -ffreestanding -static -o $@
 
 %.dump: %.elf
-	$(OBJDUMP) -D $< > $@
+	$(OBJDUMP) -D $< -j .text.start -j .text.hang -j .text -j .srodata -j .rodata -j .sdata > $@
 
 clean:
 	rm -f *.elf *.dump *.img
