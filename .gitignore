@@ -3,3 +3,12 @@ build
 .metals
 .bloop
 vivado*
+
+proj/*
+repo/**
+!repo/vivado-library
+repo/vivado-library/**
+!repo/local
+!repo/local/**
+!repo/cache
+repo/cache/**
