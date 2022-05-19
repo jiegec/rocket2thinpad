@@ -20,7 +20,7 @@ set script_folder [_tcl::get_script_folder]
 ################################################################
 # Check if script is running in correct Vivado version.
 ################################################################
-set scripts_vivado_version 2018.3
+set scripts_vivado_version 2019.2
 set current_vivado_version [version -short]
 
 if { [string first $scripts_vivado_version $current_vivado_version] == -1 } {
@@ -231,7 +231,9 @@ proc create_root_design { parentCell } {
 
   # Create interface ports
   set base_ram_data [ create_bd_intf_port -mode Master -vlnv xilinx.com:interface:gpio_rtl:1.0 base_ram_data ]
+
   set ext_ram_data [ create_bd_intf_port -mode Master -vlnv xilinx.com:interface:gpio_rtl:1.0 ext_ram_data ]
+
 
   # Create ports
   set base_ram_addr [ create_bd_port -dir O -from 19 -to 0 base_ram_addr ]
@@ -239,10 +241,7 @@ proc create_root_design { parentCell } {
   set base_ram_ce_n [ create_bd_port -dir O base_ram_ce_n ]
   set base_ram_oe_n [ create_bd_port -dir O base_ram_oe_n ]
   set base_ram_we_n [ create_bd_port -dir O base_ram_we_n ]
-  set clk_50M [ create_bd_port -dir I -type clk clk_50M ]
-  set_property -dict [ list \
-   CONFIG.FREQ_HZ {50000000} \
- ] $clk_50M
+  set clk_50M [ create_bd_port -dir I -type clk -freq_hz 50000000 clk_50M ]
   set ext_ram_addr [ create_bd_port -dir O -from 19 -to 0 ext_ram_addr ]
   set ext_ram_be_n [ create_bd_port -dir O -from 3 -to 0 ext_ram_be_n ]
   set ext_ram_ce_n [ create_bd_port -dir O ext_ram_ce_n ]
@@ -417,10 +416,10 @@ proc create_root_design { parentCell } {
   connect_bd_intf_net -intf_net jtag_axi_0_M_AXI [get_bd_intf_pins axi_mem_intercon/S02_AXI] [get_bd_intf_pins jtag_axi_0/M_AXI]
   connect_bd_intf_net -intf_net rocketchip_wrapper_0_M_AXI [get_bd_intf_pins axi_mem_intercon/S00_AXI] [get_bd_intf_pins rocketchip_wrapper_0/M_AXI]
 connect_bd_intf_net -intf_net [get_bd_intf_nets rocketchip_wrapper_0_M_AXI] [get_bd_intf_pins rocketchip_wrapper_0/M_AXI] [get_bd_intf_pins system_ila_0/SLOT_0_AXI]
-set_property HDL_ATTRIBUTE.DEBUG {true} [get_bd_intf_nets rocketchip_wrapper_0_M_AXI]
+  set_property HDL_ATTRIBUTE.DEBUG {true} [get_bd_intf_nets rocketchip_wrapper_0_M_AXI]
   connect_bd_intf_net -intf_net rocketchip_wrapper_0_M_AXI_MMIO [get_bd_intf_pins axi_mem_intercon/S01_AXI] [get_bd_intf_pins rocketchip_wrapper_0/M_AXI_MMIO]
 connect_bd_intf_net -intf_net [get_bd_intf_nets rocketchip_wrapper_0_M_AXI_MMIO] [get_bd_intf_pins rocketchip_wrapper_0/M_AXI_MMIO] [get_bd_intf_pins system_ila_0/SLOT_1_AXI]
-set_property HDL_ATTRIBUTE.DEBUG {true} [get_bd_intf_nets rocketchip_wrapper_0_M_AXI_MMIO]
+  set_property HDL_ATTRIBUTE.DEBUG {true} [get_bd_intf_nets rocketchip_wrapper_0_M_AXI_MMIO]
   connect_bd_intf_net -intf_net sram_converter_0_sram_data [get_bd_intf_ports base_ram_data] [get_bd_intf_pins sram_converter_base/sram_data]
   connect_bd_intf_net -intf_net sram_converter_0_sram_data1 [get_bd_intf_ports ext_ram_data] [get_bd_intf_pins sram_converter_ext/sram_data]
 
@@ -451,18 +450,18 @@ set_property HDL_ATTRIBUTE.DEBUG {true} [get_bd_intf_nets rocketchip_wrapper_0_M
   connect_bd_net -net xlconstant_1_dout [get_bd_pins clk_wiz_0/reset] [get_bd_pins xlconstant_1/dout]
 
   # Create address segments
-  create_bd_addr_seg -range 0x00008000 -offset 0x80800000 [get_bd_addr_spaces jtag_axi_0/Data] [get_bd_addr_segs axi_bram_ctrl_0/S_AXI/Mem0] SEG_axi_bram_ctrl_0_Mem0
-  create_bd_addr_seg -range 0x00400000 -offset 0x80000000 [get_bd_addr_spaces jtag_axi_0/Data] [get_bd_addr_segs axi_emc_base/S_AXI_MEM/Mem0] SEG_axi_emc_base_Mem0
-  create_bd_addr_seg -range 0x00400000 -offset 0x80400000 [get_bd_addr_spaces jtag_axi_0/Data] [get_bd_addr_segs axi_emc_ext/S_AXI_MEM/Mem0] SEG_axi_emc_ext_Mem0
-  create_bd_addr_seg -range 0x00010000 -offset 0x60600000 [get_bd_addr_spaces jtag_axi_0/Data] [get_bd_addr_segs axi_uart16550_0/S_AXI/Reg] SEG_axi_uart16550_0_Reg
-  create_bd_addr_seg -range 0x00008000 -offset 0x80800000 [get_bd_addr_spaces rocketchip_wrapper_0/M_AXI] [get_bd_addr_segs axi_bram_ctrl_0/S_AXI/Mem0] SEG_axi_bram_ctrl_0_Mem0
-  create_bd_addr_seg -range 0x00008000 -offset 0x80800000 [get_bd_addr_spaces rocketchip_wrapper_0/M_AXI_MMIO] [get_bd_addr_segs axi_bram_ctrl_0/S_AXI/Mem0] SEG_axi_bram_ctrl_0_Mem0
-  create_bd_addr_seg -range 0x00400000 -offset 0x80000000 [get_bd_addr_spaces rocketchip_wrapper_0/M_AXI] [get_bd_addr_segs axi_emc_base/S_AXI_MEM/Mem0] SEG_axi_emc_base_Mem0
-  create_bd_addr_seg -range 0x00400000 -offset 0x80000000 [get_bd_addr_spaces rocketchip_wrapper_0/M_AXI_MMIO] [get_bd_addr_segs axi_emc_base/S_AXI_MEM/Mem0] SEG_axi_emc_base_Mem0
-  create_bd_addr_seg -range 0x00400000 -offset 0x80400000 [get_bd_addr_spaces rocketchip_wrapper_0/M_AXI] [get_bd_addr_segs axi_emc_ext/S_AXI_MEM/Mem0] SEG_axi_emc_ext_Mem0
-  create_bd_addr_seg -range 0x00400000 -offset 0x80400000 [get_bd_addr_spaces rocketchip_wrapper_0/M_AXI_MMIO] [get_bd_addr_segs axi_emc_ext/S_AXI_MEM/Mem0] SEG_axi_emc_ext_Mem0
-  create_bd_addr_seg -range 0x00010000 -offset 0x60600000 [get_bd_addr_spaces rocketchip_wrapper_0/M_AXI] [get_bd_addr_segs axi_uart16550_0/S_AXI/Reg] SEG_axi_uart16550_0_Reg
-  create_bd_addr_seg -range 0x00010000 -offset 0x60600000 [get_bd_addr_spaces rocketchip_wrapper_0/M_AXI_MMIO] [get_bd_addr_segs axi_uart16550_0/S_AXI/Reg] SEG_axi_uart16550_0_Reg
+  assign_bd_address -offset 0x80800000 -range 0x00008000 -target_address_space [get_bd_addr_spaces jtag_axi_0/Data] [get_bd_addr_segs axi_bram_ctrl_0/S_AXI/Mem0] -force
+  assign_bd_address -offset 0x80000000 -range 0x00400000 -target_address_space [get_bd_addr_spaces jtag_axi_0/Data] [get_bd_addr_segs axi_emc_base/S_AXI_MEM/Mem0] -force
+  assign_bd_address -offset 0x80400000 -range 0x00400000 -target_address_space [get_bd_addr_spaces jtag_axi_0/Data] [get_bd_addr_segs axi_emc_ext/S_AXI_MEM/Mem0] -force
+  assign_bd_address -offset 0x60600000 -range 0x00010000 -target_address_space [get_bd_addr_spaces jtag_axi_0/Data] [get_bd_addr_segs axi_uart16550_0/S_AXI/Reg] -force
+  assign_bd_address -offset 0x80800000 -range 0x00008000 -target_address_space [get_bd_addr_spaces rocketchip_wrapper_0/M_AXI] [get_bd_addr_segs axi_bram_ctrl_0/S_AXI/Mem0] -force
+  assign_bd_address -offset 0x80800000 -range 0x00008000 -target_address_space [get_bd_addr_spaces rocketchip_wrapper_0/M_AXI_MMIO] [get_bd_addr_segs axi_bram_ctrl_0/S_AXI/Mem0] -force
+  assign_bd_address -offset 0x80000000 -range 0x00400000 -target_address_space [get_bd_addr_spaces rocketchip_wrapper_0/M_AXI] [get_bd_addr_segs axi_emc_base/S_AXI_MEM/Mem0] -force
+  assign_bd_address -offset 0x80000000 -range 0x00400000 -target_address_space [get_bd_addr_spaces rocketchip_wrapper_0/M_AXI_MMIO] [get_bd_addr_segs axi_emc_base/S_AXI_MEM/Mem0] -force
+  assign_bd_address -offset 0x80400000 -range 0x00400000 -target_address_space [get_bd_addr_spaces rocketchip_wrapper_0/M_AXI] [get_bd_addr_segs axi_emc_ext/S_AXI_MEM/Mem0] -force
+  assign_bd_address -offset 0x80400000 -range 0x00400000 -target_address_space [get_bd_addr_spaces rocketchip_wrapper_0/M_AXI_MMIO] [get_bd_addr_segs axi_emc_ext/S_AXI_MEM/Mem0] -force
+  assign_bd_address -offset 0x60600000 -range 0x00010000 -target_address_space [get_bd_addr_spaces rocketchip_wrapper_0/M_AXI] [get_bd_addr_segs axi_uart16550_0/S_AXI/Reg] -force
+  assign_bd_address -offset 0x60600000 -range 0x00010000 -target_address_space [get_bd_addr_spaces rocketchip_wrapper_0/M_AXI_MMIO] [get_bd_addr_segs axi_uart16550_0/S_AXI/Reg] -force
 
 
   # Restore current instance
