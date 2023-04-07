@@ -9,4 +9,4 @@ img: uart.img
 	$(OBJCOPY) -O binary --change-addresses=-0x80000000 $< $@
 
 %.elf: %.c linker.ld init.S
-	$(GCC) -mcmodel=medany -mabi=lp64 -march=rv64ima -Tlinker.ld init.S $< -nostdlib -ffreestanding -static -o $@
+	$(GCC) -mcmodel=medany -mabi=ilp32 -march=rv32ima -Tlinker.ld init.S $< -nostdlib -ffreestanding -static -o $@
