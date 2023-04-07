@@ -2,6 +2,8 @@
 
 Run Rocket Chip on Thinpad
 
+![](./block_design.svg)
+
 ## Installation
 
 ```bash
@@ -11,7 +13,6 @@ $ make
 $ # alternatively
 $ make ROCKET_DIR=/path/to/rocket-chip
 ```
-
 
 ## Usage
 
