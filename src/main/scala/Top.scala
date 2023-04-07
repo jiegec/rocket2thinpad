@@ -14,7 +14,6 @@ class RocketChip(implicit val p: Parameters) extends Module {
 
   require(target.mem_axi4.size == 1)
   require(target.mmio_axi4.size == 1)
-  require(target.debug.head.systemjtag.size == 1)
 
   val io = IO(new Bundle {
     val interrupts = Input(UInt(2.W))
@@ -26,22 +25,11 @@ class RocketChip(implicit val p: Parameters) extends Module {
   io.mmio_axi4 <> target.mmio_axi4.head
 
   target.interrupts := io.interrupts
-
-  val boardJTAG = Module(new BscanJTAG)
-  val jtagBundle = target.debug.head.systemjtag.head
-
-  // set JTAG parameters
-  jtagBundle.reset := reset
-  jtagBundle.mfr_id := 0x233.U(11.W)
-  jtagBundle.part_number := 0.U(16.W)
-  jtagBundle.version := 0.U(4.W)
-  // connect to BSCAN
-  jtagBundle.jtag.TCK := boardJTAG.tck
-  jtagBundle.jtag.TMS := boardJTAG.tms
-  jtagBundle.jtag.TDI := boardJTAG.tdi
-  boardJTAG.tdo := jtagBundle.jtag.TDO.data
-  boardJTAG.tdoEnable := jtagBundle.jtag.TDO.driven
-
+  target.debug.get.clockeddmi.get.dmiClock := clock
+  target.debug.get.clockeddmi.get.dmiReset := reset
+  target.debug.get.clockeddmi.get.dmi.req.valid := false.B
+  target.debug.get.clockeddmi.get.dmi.req.bits := DontCare
+  target.debug.get.clockeddmi.get.dmi.resp.ready := true.B
   target.dontTouchPorts()
 }
 

@@ -15,11 +15,11 @@ dump: $(bootrom_dump)
 %.img: %.elf
 	$(OBJCOPY) -O binary --change-addresses=-0x10000 $< $@
 
-%.rv32.elf: %.S bootloader.c linker.ld
-	$(GCC) $(CFLAGS_RV32) $(CFLAGS) -Tlinker.ld $< bootloader.c -nostdlib -ffreestanding -static -o $@
+%.rv32.elf: %.S linker.ld
+	$(GCC) $(CFLAGS_RV32) $(CFLAGS) -Tlinker.ld $< -nostdlib -ffreestanding -static -o $@
 
-%.rv64.elf: %.S bootloader.c linker.ld
-	$(GCC) $(CFLAGS_RV64) $(CFLAGS) -Tlinker.ld $< bootloader.c -nostdlib -ffreestanding -static -o $@
+%.rv64.elf: %.S linker.ld
+	$(GCC) $(CFLAGS_RV64) $(CFLAGS) -Tlinker.ld $< -nostdlib -ffreestanding -static -o $@
 
 %.dump: %.elf
 	$(OBJDUMP) -D $< -j .text.start -j .text.hang -j .text -j .srodata -j .rodata -j .sdata > $@

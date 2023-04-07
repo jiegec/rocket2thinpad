@@ -32,7 +32,6 @@ class WithIDBits(n: Int)
 
 class ThinpadFPGAConfig
     extends Config(new WithoutTLMonitors ++
-    new WithJtagDTM ++
     new WithRV32 ++
     new WithIDBits(5) ++
     new WithBootROM ++

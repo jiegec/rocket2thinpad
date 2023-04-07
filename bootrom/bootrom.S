@@ -39,7 +39,7 @@ boot_core:
 boot_core_hart0:
   sw zero, 0(a1) // clear the interrupt
   li sp, DRAM_TOP // setup stack
-  la a0, bootloader // program reset vector
+  li a0, 0x80000000 // program reset vector
   csrw mepc, a0 // return from interrupt to start of user program
   csrr a0, mhartid // hartid for next level bootloader
   la a1, _dtb // dtb address for next level bootloader
